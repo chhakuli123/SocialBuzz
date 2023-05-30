@@ -21,19 +21,19 @@ const Sidebar = () => {
     <aside className="sidebar text-deepBlue text-2xl font-medium mt-5 cursor-pointer">
       <ul className="menu hidden sm:flex flex-col">
         <li className="menu-item">
-          <NavLink exact to="/" className={isActiveClass}>
+          <NavLink exact="true" to="/" className={isActiveClass}>
             <HomeOutlinedIcon style={{ fontSize: 35 }} className="mr-4" />
             Home
           </NavLink>
         </li>
         <li className="menu-item">
-          <NavLink to="/explore" className={isActiveClass}>
+          <NavLink exact="true" to="/explore" className={isActiveClass}>
             <RocketOutlinedIcon style={{ fontSize: 35 }} className="mr-4" />
             Explore
           </NavLink>
         </li>
         <li className="menu-item">
-          <NavLink to="/bookmarks" className={isActiveClass}>
+          <NavLink exact="true" to="/bookmarks" className={isActiveClass}>
             <BookmarkBorderOutlinedIcon
               style={{ fontSize: 35 }}
               className="mr-4"
@@ -42,7 +42,7 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="menu-item">
-          <NavLink to="/liked-posts" className={isActiveClass}>
+          <NavLink exact="true" to="/liked-posts" className={isActiveClass}>
             <FavoriteBorderOutlinedIcon
               style={{ fontSize: 35 }}
               className="mr-4"
@@ -51,7 +51,7 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="menu-item">
-          <NavLink exact to="/logout" className={isActiveClass}>
+          <NavLink exact="true" to="/logout" className={isActiveClass}>
             <LogoutIcon style={{ fontSize: 35 }} className="mr-4" />
             Log Out
           </NavLink>
