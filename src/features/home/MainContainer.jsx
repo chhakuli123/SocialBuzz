@@ -1,10 +1,11 @@
 import React from "react";
 
-import { FilterButtons, SearchBar, Sidebar } from "components";
+import { FilterButtons, Navbar, SearchBar, Sidebar } from "components";
 
 const MainContainer = () => {
   return (
     <div className="bg-customBg h-screen">
+      <Navbar/>
     <div className="flex max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 ">
       <Sidebar />
       

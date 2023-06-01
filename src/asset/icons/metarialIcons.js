@@ -12,6 +12,9 @@ import WhatshotRoundedIcon from "@mui/icons-material/WhatshotRounded";
 import NewReleasesRoundedIcon from "@mui/icons-material/NewReleasesRounded";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 export {
   DarkModeOutlinedIcon,
   LightModeOutlinedIcon,
@@ -27,4 +30,7 @@ export {
   WhatshotRoundedIcon,
   GitHubIcon,
   HistoryEduIcon,
+  ErrorOutlineOutlinedIcon,
+  RemoveRedEyeOutlinedIcon,
+  VisibilityOffOutlinedIcon,
 };
