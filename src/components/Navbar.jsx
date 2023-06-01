@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
-import logo from "../asset/socialbuzz.png";
 import { GitHubIcon } from "asset";
 
 const Navbar = () => {
@@ -17,11 +16,11 @@ const Navbar = () => {
           >
             <img
               className="h-[4rem] w-[4rem] sm:w-[5rem] sm:h-[5rem]"
-              src={logo}
+              src="https://res.cloudinary.com/dptfwcnro/image/upload/v1685582243/SocialBuzz/SocialBuzzLogo_dsauhu.png"
               alt="SocialBuzz Logo"
             />
-            <h1 className="font-bold ml-2 text-2xl sm:text-4xl">
-              Social<span className="text-customOrange">Buzz</span>
+            <h1 className="font-bold ml-2 bg-gradient-to-r text-transparent bg-clip-text from-deepBlue to-customGreen text-2xl sm:text-4xl">
+              SocialBuzz
             </h1>
           </div>
           <div className="flex items-center">
