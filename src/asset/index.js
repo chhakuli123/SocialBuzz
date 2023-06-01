@@ -13,4 +13,7 @@ export {
   WhatshotRoundedIcon,
   GitHubIcon,
   HistoryEduIcon,
+  ErrorOutlineOutlinedIcon,
+  RemoveRedEyeOutlinedIcon,
+  VisibilityOffOutlinedIcon,
 } from "./icons/metarialIcons";
