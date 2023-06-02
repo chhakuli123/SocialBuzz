@@ -22,13 +22,13 @@ export const users = [
   {
     _id: "t7cZfWIp-q",
     firstName: "Alice",
-    lastName: "Johnson",
+    lastName: "Jones",
     username: "alicejohnson",
     password: "alice123",
     bio: "Software Developer",
     bookmarks: [],
     avatarUrl:
-      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685515951/SocialBuzz/istockphoto-679013586-170667a_dfjreo.webp",
+      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685596157/SocialBuzz/images_vrd6b5.jpg",
     website: "https://alicejohnson.com/",
     createdAt: "2022-05-15T08:30:00+05:30",
     updatedAt: formatDate(),
@@ -42,7 +42,7 @@ export const users = [
     bio: "Web Designer",
     bookmarks: [],
     avatarUrl:
-      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685516005/SocialBuzz/istockphoto-1296659396-170667a_t0c81g.webp",
+      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685595771/SocialBuzz/247-2479526_round-profile-picture-png-transparent-png_ukpjxm.png",
     website: "https://bobsmith.com/",
     createdAt: "2022-06-20T14:45:00+05:30",
     updatedAt: formatDate(),
@@ -56,7 +56,7 @@ export const users = [
     bio: "Photographer",
     bookmarks: [],
     avatarUrl:
-      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685516051/SocialBuzz/photo-1564564295391-7f24f26f568b_qnblpw.avif",
+      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685595740/SocialBuzz/images_zrbwa3.jpg",
     website: "https://emmadavis.com/",
     createdAt: "2022-04-10T12:15:00+05:30",
     updatedAt: formatDate(),
@@ -69,7 +69,7 @@ export const users = [
     password: "james123",
     bio: "Musician",
     avatarUrl:
-      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685516078/SocialBuzz/photo-1564564244660-5d73c057f2d2_thvqyo.avif",
+      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685595800/SocialBuzz/images_wxjv0c.jpg",
     website: "https://jameswilson.com/",
     createdAt: "2022-07-05T17:20:00+05:30",
     updatedAt: formatDate(),
@@ -83,7 +83,7 @@ export const users = [
     bio: "Graphic Designer",
     bookmarks: [],
     avatarUrl:
-      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685516095/SocialBuzz/photo-1564564321441-e96763888581_ez53sp.avif",
+      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685595837/SocialBuzz/images_b9qohl.jpg",
     website: "https://lilyanderson.com/",
     createdAt: "2022-03-01T09:00:00+05:30",
     updatedAt: formatDate(),
@@ -97,7 +97,7 @@ export const users = [
     bio: "Travel Blogger",
     bookmarks: [],
     avatarUrl:
-      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685516130/SocialBuzz/photo-1628103218051-70df3f97097b_lkapzk.avif",
+      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685595881/SocialBuzz/images_tidrd1.jpg",
     website: "https://olivertaylor.com/",
     createdAt: "2022-08-10T13:55:00+05:30",
     updatedAt: formatDate(),
@@ -111,7 +111,7 @@ export const users = [
     bio: "Fitness Enthusiast",
     bookmarks: [],
     avatarUrl:
-      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685516199/SocialBuzz/photo-1508214751196-bcfd4ca60f91_qaaxwz.avif",
+      "https://res.cloudinary.com/dptfwcnro/image/upload/v1685595920/SocialBuzz/images_qynsis.jpg",
     website: "https://sophieclark.com/",
     createdAt: "2022-09-25T10:10:00+05:30",
     updatedAt: formatDate(),

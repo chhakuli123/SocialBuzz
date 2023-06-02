@@ -8,7 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <nav>
-      <div className="max-w-[90rem] text-deepBlue mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-white text-deepBlue mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-[5rem]">
           <div
             onClick={() => navigate("/")}
@@ -30,7 +30,7 @@ const Navbar = () => {
               target="_blank"
               className="github-icon cursor-pointer hover:text-customOrange"
             >
-              <GitHubIcon style={{ fontSize: 40 }} />
+              <GitHubIcon style={{ fontSize: 35 }} />
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FilterButtons, Navbar, SearchBar, Sidebar } from "components";
+import { FollowUserBar, Navbar, Sidebar } from "components";
 
 const MainContainer = () => {
   return (
@@ -13,9 +13,8 @@ const MainContainer = () => {
         <h1>I am main</h1>  
       </div>
 
-      <div className="mt-5 w-80">
-        <SearchBar /> 
-        <FilterButtons/>
+      <div className="mt-5 w-90">
+        <FollowUserBar/>
       </div>
     </div>
     </div>

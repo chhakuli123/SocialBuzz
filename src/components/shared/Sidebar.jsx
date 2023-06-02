@@ -14,7 +14,7 @@ import {
   RocketOutlinedIcon,
 } from "asset";
 
-import { logout } from "features/authentication/authSlice";
+import { logout } from "slices";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -26,24 +26,24 @@ const Sidebar = () => {
     }`;
 
   return (
-    <aside className="sidebar text-deepBlue text-2xl font-medium mt-5 cursor-pointer">
+    <aside className="sidebar text-deepBlue text-2xl w-[15rem] mt-5 cursor-pointer">
       <ul className="menu hidden sm:flex flex-col">
         <li className="menu-item">
           <NavLink exact="true" to="/" className={isActiveClass}>
-            <HomeOutlinedIcon style={{ fontSize: 35 }} className="mr-4" />
+            <HomeOutlinedIcon style={{ fontSize: 32 }} className="mr-4" />
             Home
           </NavLink>
         </li>
         <li className="menu-item">
           <NavLink exact="true" to="/explore" className={isActiveClass}>
-            <RocketOutlinedIcon style={{ fontSize: 35 }} className="mr-4" />
+            <RocketOutlinedIcon style={{ fontSize: 32 }} className="mr-4" />
             Explore
           </NavLink>
         </li>
         <li className="menu-item">
           <NavLink exact="true" to="/bookmarks" className={isActiveClass}>
             <BookmarkBorderOutlinedIcon
-              style={{ fontSize: 35 }}
+              style={{ fontSize: 32 }}
               className="mr-4"
             />
             Bookmarks
@@ -52,7 +52,7 @@ const Sidebar = () => {
         <li className="menu-item">
           <NavLink exact="true" to="/liked-posts" className={isActiveClass}>
             <FavoriteBorderOutlinedIcon
-              style={{ fontSize: 35 }}
+              style={{ fontSize: 32 }}
               className="mr-4"
             />
             Liked Posts
@@ -65,17 +65,17 @@ const Sidebar = () => {
             toast.success("Logged Out!");
           }}
         >
-          <LogoutIcon style={{ fontSize: 35 }} className="mr-4" />
+          <LogoutIcon style={{ fontSize: 32 }} className="mr-4" />
           Log Out
         </li>
 
         <li className="menu-item mt-10">
           <button
             onClick={() => navigate("/create-post")}
-            className="bg-customGreen w-full flex items-center py-2 px-5 text-white rounded"
+            className="bg-customGreen hover:bg-green-600 w-full flex justify-center items-center py-2 px-5 text-white rounded"
           >
             <AddCircleOutlineOutlinedIcon
-              style={{ fontSize: 35 }}
+              style={{ fontSize: 32 }}
               className="mr-4"
             />
             New Post

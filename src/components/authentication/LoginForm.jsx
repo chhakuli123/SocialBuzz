@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
 
 import { InputField } from "./InputFeild";
-import { loginUser } from "../authSlice";
+import { loginUser } from "slices";
 
 const LoginForm = () => {
   const [userLoginDetails, setUserLoginDetails] = useState({
@@ -64,7 +64,7 @@ const LoginForm = () => {
           <div className="flex justify-center items-center cursor-pointer mb-2">
             <img
               className="h-[4rem] w-[4rem] sm:w-[5rem] sm:h-[5rem]"
-              src="https://res.cloudinary.com/dptfwcnro/image/upload/v1685582243/SocialBuzz/SocialBuzzLogo_dsauhu.png"
+              src="https://res.cloudinary.com/dptfwcnro/image/upload/v1685675297/SocialBuzz/SocialBuzzLogo-removebg-preview_qw2mcu.png"
               alt="SocialBuzz Logo"
             />
             <h1 className="font-bold ml-2 bg-gradient-to-r text-transparent bg-clip-text from-deepBlue to-customGreen text-2xl sm:text-4xl">
