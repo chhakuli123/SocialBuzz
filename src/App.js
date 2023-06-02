@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
-import { MainContainer } from "features";
-import { LoginForm, PrivateRoute, SignupForm } from "features/authentication";
 import "./App.css";
+import { LoginForm, MockAPI, PrivateRoute, SignupForm } from "components";
+import { MainContainer } from "main-container";
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<MainContainer />} />
+          <Route path="/mock" element={<MockAPI />} />
         </Route>
       </Routes>
     </div>
