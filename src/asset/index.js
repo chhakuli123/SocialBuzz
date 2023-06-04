@@ -16,4 +16,13 @@ export {
   ErrorOutlineOutlinedIcon,
   RemoveRedEyeOutlinedIcon,
   VisibilityOffOutlinedIcon,
+  AddPhotoAlternateOutlinedIcon,
+  AddReactionOutlinedIcon,
+  ThumbUpOffAltIcon,
+  ThumbUpIcon,
+  BookmarkBorderIcon,
+  BookmarkIcon,
+  MoreVertIcon,
+  SendIcon,
+  ClearIcon,
 } from "./icons/metarialIcons";

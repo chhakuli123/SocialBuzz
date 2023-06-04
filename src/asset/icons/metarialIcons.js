@@ -15,6 +15,15 @@ import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+import AddReactionOutlinedIcon from "@mui/icons-material/AddReactionOutlined";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import SendIcon from "@mui/icons-material/Send";
+import ClearIcon from "@mui/icons-material/Clear";
 export {
   DarkModeOutlinedIcon,
   LightModeOutlinedIcon,
@@ -33,4 +42,13 @@ export {
   ErrorOutlineOutlinedIcon,
   RemoveRedEyeOutlinedIcon,
   VisibilityOffOutlinedIcon,
+  AddPhotoAlternateOutlinedIcon,
+  AddReactionOutlinedIcon,
+  ThumbUpOffAltIcon,
+  ThumbUpIcon,
+  BookmarkBorderIcon,
+  BookmarkIcon,
+  MoreVertIcon,
+  SendIcon,
+  ClearIcon,
 };
