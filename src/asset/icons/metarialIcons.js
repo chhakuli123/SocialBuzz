@@ -24,6 +24,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SendIcon from "@mui/icons-material/Send";
 import ClearIcon from "@mui/icons-material/Clear";
+import MapsUgcOutlinedIcon from "@mui/icons-material/MapsUgcOutlined";
 export {
   DarkModeOutlinedIcon,
   LightModeOutlinedIcon,
@@ -51,4 +52,5 @@ export {
   MoreVertIcon,
   SendIcon,
   ClearIcon,
+  MapsUgcOutlinedIcon,
 };

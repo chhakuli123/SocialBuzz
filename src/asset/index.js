@@ -25,4 +25,5 @@ export {
   MoreVertIcon,
   SendIcon,
   ClearIcon,
+  MapsUgcOutlinedIcon,
 } from "./icons/metarialIcons";
