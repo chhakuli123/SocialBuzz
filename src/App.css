@@ -2,3 +2,13 @@
   margin: 0;
   padding: 0;
 }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #253053;
+  border-radius: 1rem;
+}

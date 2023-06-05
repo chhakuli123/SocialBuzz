@@ -26,8 +26,8 @@ const Sidebar = () => {
     }`;
 
   return (
-    <aside className="sidebar text-deepBlue text-2xl w-[15rem] mt-5 cursor-pointer">
-      <ul className="menu hidden sm:flex flex-col">
+    <aside className="sidebar fixed top-15 z-10 text-deepBlue text-2xl w-[19rem] mt-7 ml-4 cursor-pointer">
+      <ul className="menu hidden lg:flex flex-col">
         <li className="menu-item">
           <NavLink exact="true" to="/" className={isActiveClass}>
             <HomeOutlinedIcon style={{ fontSize: 32 }} className="mr-4" />
@@ -84,18 +84,36 @@ const Sidebar = () => {
       </ul>
 
       {/* -------------------- MenuBar For Mobile -------------------------- */}
-      <div className="menu sm:hidden fixed bottom-0 inset-x-0 bg-deepBlue text-customOrange flex justify-between px-4 py-3">
-        <span onClick={() => navigate("/explore")} className="flex flex-col items-center">
+      <div className="menu lg:hidden fixed bottom-0 inset-x-0 bg-deepBlue text-customOrange flex justify-between px-4 py-3">
+        <span
+          onClick={() => navigate("/explore")}
+          className="flex flex-col items-center"
+        >
           <HomeOutlinedIcon style={{ fontSize: 35 }} className="text-white" />
         </span>
-        <span onClick={() => navigate("/explore")} className="flex flex-col items-center">
+        <span
+          onClick={() => navigate("/explore")}
+          className="flex flex-col items-center"
+        >
           <RocketOutlinedIcon style={{ fontSize: 35 }} className="text-white" />
         </span>
-        <span onClick={() => navigate("/bookmarks")} className="flex flex-col items-center">
-          <BookmarkBorderOutlinedIcon style={{ fontSize: 35 }} className="text-white" />
+        <span
+          onClick={() => navigate("/bookmarks")}
+          className="flex flex-col items-center"
+        >
+          <BookmarkBorderOutlinedIcon
+            style={{ fontSize: 35 }}
+            className="text-white"
+          />
         </span>
-        <span onClick={() => navigate("/liked-posts")} className="flex flex-col items-center">
-          <FavoriteBorderOutlinedIcon style={{ fontSize: 35 }} className="text-white" />
+        <span
+          onClick={() => navigate("/liked-posts")}
+          className="flex flex-col items-center"
+        >
+          <FavoriteBorderOutlinedIcon
+            style={{ fontSize: 35 }}
+            className="text-white"
+          />
         </span>
         <span
           onClick={() => {
@@ -109,10 +127,15 @@ const Sidebar = () => {
       </div>
 
       {/* Position the HistoryEduIcon above the right corner */}
-      <div className="absolute sm:hidden bottom-0 right-0 mb-[4.8rem] mr-[0.2rem] bg-customGreen rounded-full w-12 h-12 flex items-center justify-center">
-        <span onClick={() => navigate("/create-post")} className="text-white text-3xl">
-          <HistoryEduIcon style={{ fontSize: 35 }} className="text-white" />
-        </span>
+      <div className="lg:hidden fixed bottom-16 right-0 mb-4 mr-2">
+        <div className="bg-customGreen rounded-full w-12 h-12 flex items-center justify-center">
+          <span
+            onClick={() => navigate("/create-post")}
+            className="text-white text-3xl"
+          >
+            <HistoryEduIcon style={{ fontSize: 35 }} className="text-white" />
+          </span>
+        </div>
       </div>
     </aside>
   );

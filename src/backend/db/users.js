@@ -15,7 +15,7 @@ export const users = [
     bookmarks: [],
     avatarUrl:
       "https://res.cloudinary.com/dptfwcnro/image/upload/v1685515809/SocialBuzz/photo_pd6e7o.jpg",
-    website: "https://romabulani.netlify.app/",
+    website: "https://chhakulizingare.netlify.app/",
     createdAt: "2022-01-01T10:55:06+05:30",
     updatedAt: formatDate(),
   },
