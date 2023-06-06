@@ -8,3 +8,4 @@ export { PrivateRoute } from "./authentication/PrivateRoute";
 export { LoginForm } from "./authentication/LoginForm";
 export { SignupForm } from "./authentication/SignupForm";
 export { Home } from "./home/Home";
+export { PostModal } from "./home/PostModal";
