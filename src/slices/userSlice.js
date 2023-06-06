@@ -13,9 +13,7 @@ export const fetchAllUsers = createAsyncThunk(
   "user/getAllUsers",
   async (_, { rejectWithValue }) => {
     try {
-      console.log("Before getAllUsers");
       const { data } = await getAllUsers();
-      console.log("After getAllUsers");
       return data.users;
     } catch (e) {
       console.error("Error:", e);
