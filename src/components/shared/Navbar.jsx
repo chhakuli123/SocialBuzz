@@ -7,7 +7,7 @@ import { GitHubIcon } from "asset";
 const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <nav className="sticky top-0 z-50">
+    <nav className="sticky top-0">
       <div className="bg-white text-deepBlue mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-[5rem]">
           <div

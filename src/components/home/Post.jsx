@@ -1,26 +1,29 @@
-// Post.js
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import {
   MoreVertIcon,
   ThumbUpOffAltIcon,
   BookmarkBorderIcon,
   SendIcon,
-  MapsUgcOutlinedIcon
+  MapsUgcOutlinedIcon,
 } from "asset";
+import { deleteUserPost } from "slices";
+import { EditPostModal } from "./EditPostModel";
+import { useOutsideClick } from "hooks";
 
-const Post = ({
-  post,
-  user,
-  allUsers,
-  handleOptionsClick,
-  showOptions,
-  optionsRef,
-}) => {
+const Post = ({ post, user, allUsers }) => {
+  const [showOptions, setShowOptions] = useState(false);
   const [showCommentSection, setShowCommentSection] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  
+  const dispatch = useDispatch();
 
-  const handleCommentIconClick = () => {
-    setShowCommentSection(!showCommentSection);
+  const domNode = useOutsideClick(() => setShowOptions(false));
+  
+  const handleEditIconClick = () => {
+    setShowOptions(false);
+    setShowEditModal(true);
   };
   
   return (
@@ -53,20 +56,25 @@ const Post = ({
         </div>
 
         {/* More options */}
-        <div className="relative ml-auto">
+        <div className="relative ml-auto" ref={domNode}>
           <MoreVertIcon
             className="more-vert-icon cursor-pointer"
-            onClick={handleOptionsClick}
+            onClick={()=>setShowOptions(!showOptions)}
           />
           {showOptions && (
             <div
               className="absolute right-0 top-6.5 bg-activeGreen border shadow rounded py-2 px-2"
-              ref={optionsRef}
             >
-              <div className="cursor-pointer hover:bg-gray-100 py-2 px-4">
+              <div
+                className="cursor-pointer py-2 px-4"
+                onClick={handleEditIconClick}
+              >
                 Edit
               </div>
-              <div className="cursor-pointer hover:bg-gray-100 py-2 px-4">
+              <div
+                onClick={() => dispatch(deleteUserPost(post && post?._id))}
+                className="cursor-pointer py-2 px-4"
+              >
                 Delete
               </div>
             </div>
@@ -87,13 +95,16 @@ const Post = ({
 
       {/* Like and Bookmark */}
       <div className="flex items-center mt-4 cursor-pointer">
-        <ThumbUpOffAltIcon style={{fontSize:"2rem"}}/>
+        <ThumbUpOffAltIcon style={{ fontSize: "2rem" }} />
         <p className="mr-2">{post.likes?.likeCount}</p>
 
-        <MapsUgcOutlinedIcon  style={{fontSize:"2rem"}} onClick={handleCommentIconClick} />
+        <MapsUgcOutlinedIcon
+          style={{ fontSize: "2rem" }}
+          onClick={()=>setShowCommentSection(!showCommentSection)}
+        />
         <p className="mr-2">{post.comments?.length}</p>
 
-        <BookmarkBorderIcon  style={{fontSize:"2rem"}} />
+        <BookmarkBorderIcon style={{ fontSize: "2rem" }} />
       </div>
 
       {/* Comment section */}
@@ -149,6 +160,10 @@ const Post = ({
             );
           })}
         </div>
+      )}
+      {/* Edit post modal */}
+      {showEditModal && (
+        <EditPostModal post={post} onClose={() => setShowEditModal(false)} />
       )}
     </div>
   );
