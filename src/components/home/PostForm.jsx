@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Picker from "emoji-picker-react";
 
 import {
@@ -7,32 +7,18 @@ import {
   AddReactionOutlinedIcon,
   ClearIcon,
 } from "asset";
+import { addUserPost } from "slices";
+import { useOutsideClick } from "hooks";
 
 const PostForm = () => {
-  const { user } = useSelector((state) => state.auth);
-
   const [postContent, setPostContent] = useState("");
   const [selectedImageName, setSelectedImageName] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
-  const emojiPickerRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        emojiPickerRef.current &&
-        !emojiPickerRef.current.contains(event.target) &&
-        !event.target.classList.contains("add-reaction-icon")
-      ) {
-        setShowEmojiPicker(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const domNode = useOutsideClick(() => setShowEmojiPicker(false));
 
   const handleImageSelect = () => {
     const input = document.createElement("input");
@@ -40,7 +26,8 @@ const PostForm = () => {
     input.accept = "image/*";
     input.onchange = (e) => {
       const file = e.target.files[0];
-      setSelectedImageName(file.name);
+      const imageUrl = URL.createObjectURL(file);
+      setSelectedImageName(imageUrl);
     };
     input.click();
   };
@@ -52,6 +39,17 @@ const PostForm = () => {
     setShowEmojiPicker(false);
   };
 
+  const handlePostClick = () => {
+    const postData = {
+      content: postContent,
+      mediaURL: selectedImageName,
+      userId: user._id,
+    };
+    dispatch(addUserPost(postData));
+    setPostContent("");
+    setSelectedImageName(null);
+  };
+  
   return (
     <div>
       <div className="flex flex-col border bg-white rounded-lg shadow-lg p-4 mb-8 sm:w-full md:w-[40rem]">
@@ -70,15 +68,19 @@ const PostForm = () => {
         </div>
 
         {selectedImageName && (
-          <div className="flex items-center p-1 mt-1 ml-12 mb-2 bg-activeGreen rounded-xl w-max">
-            <p className="mb-1 mr-1 font-semibold">{selectedImageName}</p>
+          <div className="relative mb-4  w-[8rem]">
+            <img
+              src={selectedImageName}
+              alt="Post"
+              className="object-cover rounded-md h-[7rem]"
+            />
             <button
-              className="text-red-500 hover:text-red-700"
+              className="absolute top-1 right-1 rounded-full bg-activeGreen w-5 h-5 p-2 flex items-center justify-center"
               onClick={() => {
                 setSelectedImageName(null);
               }}
             >
-              <ClearIcon />
+              <ClearIcon style={{ fontSize: "1rem" }} />
             </button>
           </div>
         )}
@@ -89,10 +91,7 @@ const PostForm = () => {
               style={{ fontSize: "30px" }}
               onClick={handleImageSelect}
             />
-            <div
-              className="relative"
-              ref={emojiPickerRef}
-            >
+            <div className="relative" ref={domNode}>
               <AddReactionOutlinedIcon
                 className="add-reaction-icon"
                 style={{ fontSize: "30px" }}
@@ -100,13 +99,16 @@ const PostForm = () => {
               />
               {showEmojiPicker && (
                 <div className="z-10 drop-shadow-lg absolute top-4 right-0 left-[1rem]">
-                  <Picker onEmojiClick={handleEmojiClick}/>
+                  <Picker onEmojiClick={handleEmojiClick} />
                 </div>
               )}
             </div>
           </div>
 
-          <button className="bg-customGreen hover:bg-green-500 text-white font-semibold py-1 px-8 text-xl rounded">
+          <button
+            onClick={handlePostClick}
+            className="bg-customGreen hover:bg-green-500 text-white font-semibold py-1 px-8 text-xl rounded"
+          >
             Post
           </button>
         </div>
