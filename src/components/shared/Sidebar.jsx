@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
@@ -13,10 +13,12 @@ import {
   LogoutIcon,
   RocketOutlinedIcon,
 } from "asset";
-
 import { logout } from "slices";
+import { PostModal } from "components";
 
 const Sidebar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -71,7 +73,7 @@ const Sidebar = () => {
 
         <li className="menu-item mt-10">
           <button
-            onClick={() => navigate("/create-post")}
+            onClick={() =>setIsModalOpen(true)}
             className="bg-customGreen hover:bg-green-600 w-full flex justify-center items-center py-2 px-5 text-white rounded"
           >
             <AddCircleOutlineOutlinedIcon
@@ -82,6 +84,7 @@ const Sidebar = () => {
           </button>
         </li>
       </ul>
+      {isModalOpen && <PostModal onClose={()=>setIsModalOpen(false)} />}
 
       {/* -------------------- MenuBar For Mobile -------------------------- */}
       <div className="menu lg:hidden fixed bottom-0 inset-x-0 bg-deepBlue text-customOrange flex justify-between px-4 py-3">
@@ -130,7 +133,7 @@ const Sidebar = () => {
       <div className="lg:hidden fixed bottom-16 right-0 mb-4 mr-2">
         <div className="bg-customGreen rounded-full w-12 h-12 flex items-center justify-center">
           <span
-            onClick={() => navigate("/create-post")}
+            onClick={() =>setIsModalOpen(true)}
             className="text-white text-3xl"
           >
             <HistoryEduIcon style={{ fontSize: 35 }} className="text-white" />
