@@ -16,14 +16,6 @@ import {
   getAllUserPostsHandler,
 } from "./backend/controllers/PostController";
 import {
-  getPostCommentsHandler,
-  addPostCommentHandler,
-  editPostCommentHandler,
-  deletePostCommentHandler,
-  upvotePostCommentHandler,
-  downvotePostCommentHandler,
-} from "./backend/controllers/CommentsController";
-import {
   followUserHandler,
   getAllUsersHandler,
   getUserHandler,
@@ -33,6 +25,15 @@ import {
   unfollowUserHandler,
   editUserHandler,
 } from "./backend/controllers/UserController";
+
+import {
+  getPostCommentsHandler,
+  addPostCommentHandler,
+  editPostCommentHandler,
+  deletePostCommentHandler,
+  upvotePostCommentHandler,
+  downvotePostCommentHandler,
+} from "./backend/controllers/CommentsController";
 
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
@@ -78,6 +79,10 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/posts/like/:postId", likePostHandler.bind(this));
       this.post("/posts/dislike/:postId", dislikePostHandler.bind(this));
 
+      // user routes (public)
+      this.get("/users", getAllUsersHandler.bind(this));
+      this.get("/users/:username", getUserHandler.bind(this));
+
       //post comments routes (public)
       this.get("/comments/:postId", getPostCommentsHandler.bind(this));
 
@@ -87,7 +92,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/comments/edit/:postId/:commentId",
         editPostCommentHandler.bind(this)
       );
-      this.post(
+      this.delete(
         "/comments/delete/:postId/:commentId",
         deletePostCommentHandler.bind(this)
       );
@@ -99,9 +104,6 @@ export function makeServer({ environment = "development" } = {}) {
         "/comments/downvote/:postId/:commentId",
         downvotePostCommentHandler.bind(this)
       );
-      // user routes (public)
-      this.get("/users", getAllUsersHandler.bind(this));
-      this.get("/users/:userId", getUserHandler.bind(this));
 
       // user routes (private)
       this.post("users/edit", editUserHandler.bind(this));
@@ -115,6 +117,12 @@ export function makeServer({ environment = "development" } = {}) {
       this.post(
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
+      );
+
+      this.passthrough();
+      this.passthrough(
+        "https://api.cloudinary.com/v1_1/dflebgpde/image/upload",
+        ["post"]
       );
     },
   });
