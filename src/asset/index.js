@@ -26,4 +26,6 @@ export {
   SendIcon,
   ClearIcon,
   MapsUgcOutlinedIcon,
+  ThumbDownAltIcon,
+  EditIcon,
 } from "./icons/metarialIcons";

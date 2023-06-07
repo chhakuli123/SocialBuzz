@@ -6,3 +6,4 @@ export {
   deletePost,
   editPost,
 } from "./postsServices";
+export { addComment, editComment, deleteComment } from "./commentServices";
