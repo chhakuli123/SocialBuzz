@@ -26,11 +26,17 @@ const CommentItem = ({
   return (
     <div key={comment._id} className="flex mt-2 p-2 mb-2">
       {/* Comment user avatar */}
-      {commentUser?.avatarUrl && (
+      {commentUser?.avatarUrl ? (
         <img
           src={commentUser.avatarUrl}
           alt="comment user avatar"
           className="w-8 h-8 rounded-full mr-2"
+        />
+      ) : (
+        <img
+          src="https://res.cloudinary.com/dptfwcnro/image/upload/v1686139004/SocialBuzz/images_zig8rk.png"
+          alt="avtar"
+          className="w-10 h-8 rounded-full mb-2 md:mb-0 md:mr-2"
         />
       )}
 

@@ -8,9 +8,7 @@ import {
   BookmarkBorderIcon,
   MapsUgcOutlinedIcon,
 } from "asset";
-import {
-  deleteUserPost,
-} from "slices";
+import { deleteUserPost } from "slices";
 import { EditPostModal } from "./EditPostModel";
 import { useOutsideClick } from "hooks";
 import { Comment } from "./Comment";
@@ -38,22 +36,27 @@ const Post = ({ post, user, allUsers }) => {
     >
       <div className="flex items-center flex-wrap mb-2">
         {/* User avatar */}
-        {user?.avatarUrl && (
+        {user?.avatarUrl ? (
           <img
             src={user.avatarUrl}
             alt="user avatar"
             className="w-10 h-10 rounded-full mb-2 md:mb-0 md:mr-2"
           />
+        ) : (
+          <img
+            src="https://res.cloudinary.com/dptfwcnro/image/upload/v1686139004/SocialBuzz/images_zig8rk.png"
+            alt="avtar"
+            className="w-12 h-10 rounded-full mb-2 md:mb-0 md:mr-2"
+          />
         )}
 
         {/* User details */}
         <div className="flex flex-col">
-          {user?.avatarUrl && (
+          {user && (
             <p className="font-semibold">
               {user.firstName} {user.lastName}
             </p>
           )}
-
           <p className="text-md text-gray-500">
             @{post.username} -
             {new Date(post.createdAt).toLocaleDateString("en-US")}
@@ -114,10 +117,14 @@ const Post = ({ post, user, allUsers }) => {
         <BookmarkBorderIcon style={{ fontSize: "2rem" }} />
       </div>
 
-
       {/* Comments */}
-      {showCommentSection && post.comments && (
-        <Comment post={post} user={user} allUsers={allUsers}/>
+      {showCommentSection && (
+        <Comment
+          post={post}
+          user={user}
+          allUsers={allUsers}
+          showCommentSection={showCommentSection}
+        />
       )}
 
       {/* Edit post modal */}
