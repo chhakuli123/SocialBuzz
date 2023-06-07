@@ -49,13 +49,13 @@ const Comment = ({ post, user, allUsers }) => {
   return (
     <div>
       <div className="flex items-center mt-4 mb-2">
-        {user?.avatarUrl && (
+        {user?.avatarUrl ? (
           <img
             src={user.avatarUrl}
             alt="user avatar"
             className="w-8 h-8 rounded-full mb-2 md:mb-0 md:mr-2"
           />
-        )}
+        ):(<img src="https://res.cloudinary.com/dptfwcnro/image/upload/v1686139004/SocialBuzz/images_zig8rk.png" alt="avtar"   className="w-10 h-8 rounded-full mb-2 md:mb-0 md:mr-2"/>)}
         <div className="relative flex-grow">
           <input
             type="text"
@@ -75,22 +75,30 @@ const Comment = ({ post, user, allUsers }) => {
             className="absolute right-0 top-2"
             onClick={editingComment ? handleUpdateComment : handleAddComment}
           >
-            {editingComment ? <span className="text-customGreen font-bold text-lg">Update</span> : <SendIcon />}
+            {editingComment ? (
+              <span className="text-customGreen font-bold text-lg">Update</span>
+            ) : (
+              <SendIcon />
+            )}
           </button>
         </div>
       </div>
 
       <div className="mt-4">
-        {post.comments.map((comment) => (
-          <CommentItem
-            key={comment._id}
-            comment={comment}
-            user={user}
-            allUsers={allUsers}
-            handleEditComment={handleEditComment}
-            handleDeleteComment={handleDeleteComment}
-          />
-        ))}
+        {post.comments && post.comments.length > 0 ? (
+          post.comments.map((comment) => (
+            <CommentItem
+              key={comment._id}
+              comment={comment}
+              user={user}
+              allUsers={allUsers}
+              handleEditComment={handleEditComment}
+              handleDeleteComment={handleDeleteComment}
+            />
+          ))
+        ) : (
+          <p className="flex justify-center text-deepBlue text-lg font-semibold">Share your comment with us!</p>
+        )}
       </div>
     </div>
   );
