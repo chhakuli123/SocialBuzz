@@ -6,4 +6,7 @@ export {
   addUserPost,
   editUserPost,
   deleteUserPost,
+  addUserComment,
+  editUserComment,
+  deleteUserComment,
 } from "./postsSlice";

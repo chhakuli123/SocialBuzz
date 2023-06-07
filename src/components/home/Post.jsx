@@ -4,28 +4,31 @@ import { useDispatch } from "react-redux";
 import {
   MoreVertIcon,
   ThumbUpOffAltIcon,
+  ThumbUpIcon,
   BookmarkBorderIcon,
-  SendIcon,
   MapsUgcOutlinedIcon,
 } from "asset";
 import { deleteUserPost } from "slices";
 import { EditPostModal } from "./EditPostModel";
 import { useOutsideClick } from "hooks";
+import { Comment } from "./Comment";
 
 const Post = ({ post, user, allUsers }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showCommentSection, setShowCommentSection] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  
+
   const dispatch = useDispatch();
 
-  const domNode = useOutsideClick(() => setShowOptions(false));
-  
+  const domNode = useOutsideClick(() => {
+    setShowOptions(false);
+  });
+
   const handleEditIconClick = () => {
     setShowOptions(false);
     setShowEditModal(true);
   };
-  
+
   return (
     <div
       className="text-deepBlue border border-gray-300 bg-white rounded-md p-4 mb-4 w-full md:w-[40rem]"
@@ -33,22 +36,27 @@ const Post = ({ post, user, allUsers }) => {
     >
       <div className="flex items-center flex-wrap mb-2">
         {/* User avatar */}
-        {user?.avatarUrl && (
+        {user?.avatarUrl ? (
           <img
             src={user.avatarUrl}
             alt="user avatar"
             className="w-10 h-10 rounded-full mb-2 md:mb-0 md:mr-2"
           />
+        ) : (
+          <img
+            src="https://res.cloudinary.com/dptfwcnro/image/upload/v1686139004/SocialBuzz/images_zig8rk.png"
+            alt="avtar"
+            className="w-12 h-10 rounded-full mb-2 md:mb-0 md:mr-2"
+          />
         )}
 
         {/* User details */}
         <div className="flex flex-col">
-          {user?.avatarUrl && (
+          {user && (
             <p className="font-semibold">
               {user.firstName} {user.lastName}
             </p>
           )}
-
           <p className="text-md text-gray-500">
             @{post.username} -
             {new Date(post.createdAt).toLocaleDateString("en-US")}
@@ -59,12 +67,10 @@ const Post = ({ post, user, allUsers }) => {
         <div className="relative ml-auto" ref={domNode}>
           <MoreVertIcon
             className="more-vert-icon cursor-pointer"
-            onClick={()=>setShowOptions(!showOptions)}
+            onClick={() => setShowOptions(!showOptions)}
           />
           {showOptions && (
-            <div
-              className="absolute right-0 top-6.5 bg-activeGreen border shadow rounded py-2 px-2"
-            >
+            <div className="absolute right-0 top-6.5 bg-activeGreen border shadow rounded py-2 px-2">
               <div
                 className="cursor-pointer py-2 px-4"
                 onClick={handleEditIconClick}
@@ -95,72 +101,32 @@ const Post = ({ post, user, allUsers }) => {
 
       {/* Like and Bookmark */}
       <div className="flex items-center mt-4 cursor-pointer">
-        <ThumbUpOffAltIcon style={{ fontSize: "2rem" }} />
+        {post.likes?.likedByUser ? (
+          <ThumbUpIcon style={{ fontSize: "2rem" }} />
+        ) : (
+          <ThumbUpOffAltIcon style={{ fontSize: "2rem" }} />
+        )}
         <p className="mr-2">{post.likes?.likeCount}</p>
 
         <MapsUgcOutlinedIcon
           style={{ fontSize: "2rem" }}
-          onClick={()=>setShowCommentSection(!showCommentSection)}
+          onClick={() => setShowCommentSection(!showCommentSection)}
         />
-        <p className="mr-2">{post.comments?.length}</p>
+        <p className="mr-2">{post?.comments?.length}</p>
 
         <BookmarkBorderIcon style={{ fontSize: "2rem" }} />
       </div>
 
-      {/* Comment section */}
-      {showCommentSection && (
-        <div className="flex items-center mt-4 mb-2">
-          {user?.avatarUrl && (
-            <img
-              src={user.avatarUrl}
-              alt="user avatar"
-              className="w-8 h-8 rounded-full mb-2 md:mb-0 md:mr-2"
-            />
-          )}
-          <div className="relative flex-grow">
-            <input
-              type="text"
-              placeholder="Add a comment..."
-              className="w-full border border-gray-400 ml-2 rounded-lg p-2 pr-10"
-            />
-            <button className="absolute right-0 top-2">
-              <SendIcon />
-            </button>
-          </div>
-        </div>
-      )}
       {/* Comments */}
-      {showCommentSection && post.comments && (
-        <div className="mt-4">
-          {post.comments.map((comment) => {
-            // Find the corresponding user object from allUsers
-            const user = allUsers.find(
-              (user) => user.username === comment.username
-            );
-
-            return (
-              <div key={comment.id} className="flex mt-2 p-2 mb-2">
-                {/* Comment user avatar */}
-                {user?.avatarUrl && (
-                  <img
-                    src={user.avatarUrl}
-                    alt="comment user avatar"
-                    className="w-8 h-8 rounded-full mr-2"
-                  />
-                )}
-
-                {/* Comment content */}
-                <div className="bg-gray-200 px-4 py-1 w-full rounded-md sm:rounded-tl-none sm:rounded-[4rem]">
-                  <p className="font-semibold">
-                    {user?.firstName} {user?.lastName}
-                  </p>
-                  <p>{comment.text}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      {showCommentSection && (
+        <Comment
+          post={post}
+          user={user}
+          allUsers={allUsers}
+          showCommentSection={showCommentSection}
+        />
       )}
+
       {/* Edit post modal */}
       {showEditModal && (
         <EditPostModal post={post} onClose={() => setShowEditModal(false)} />

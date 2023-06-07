@@ -54,11 +54,11 @@ const PostForm = () => {
     <div>
       <div className="flex flex-col border bg-white rounded-lg shadow-lg p-4 mb-8 sm:w-full md:w-[40rem]">
         <div className="flex">
-          <img
+         {user.avatarUrl ?(<img
             src={user.avatarUrl}
             alt="avatar"
             className="w-10 h-10 rounded-full mr-1"
-          />
+          />):(<img src="https://res.cloudinary.com/dptfwcnro/image/upload/v1686139004/SocialBuzz/images_zig8rk.png" alt="avtar"   className="w-12 h-10 rounded-full mr-1"/>)} 
           <textarea
             className="w-full h-32 ml-4 border-none rounded-lg resize-none focus:outline-none"
             placeholder="What's on your mind?"

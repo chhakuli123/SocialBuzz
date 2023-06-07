@@ -25,6 +25,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SendIcon from "@mui/icons-material/Send";
 import ClearIcon from "@mui/icons-material/Clear";
 import MapsUgcOutlinedIcon from "@mui/icons-material/MapsUgcOutlined";
+import EditIcon from "@mui/icons-material/Edit";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 export {
   DarkModeOutlinedIcon,
   LightModeOutlinedIcon,
@@ -53,4 +55,6 @@ export {
   SendIcon,
   ClearIcon,
   MapsUgcOutlinedIcon,
+  ThumbDownAltIcon,
+  EditIcon,
 };

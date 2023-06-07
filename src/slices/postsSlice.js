@@ -1,7 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
-import { addPost, deletePost, editPost, getAllPostsFromServer } from "services";
+import {
+  addComment,
+  addPost,
+  deleteComment,
+  deletePost,
+  editComment,
+  editPost,
+  getAllPostsFromServer,
+} from "services";
 
 const initialState = {
   allPosts: [],
@@ -9,6 +17,8 @@ const initialState = {
   postAddStatus: "idle",
   postDeleteStatus: "idle",
   postEditStatus: "idle",
+  commentsStatus: "idle",
+  commentsError: null,
 };
 
 export const getPosts = createAsyncThunk(
@@ -64,6 +74,42 @@ export const editUserPost = createAsyncThunk(
   }
 );
 
+export const addUserComment = createAsyncThunk(
+  "comments/addComment",
+  async ({ postId, commentData }, { rejectWithValue }) => {
+    try {
+      const { data } = await addComment(postId, commentData);
+      return data.posts;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+export const editUserComment = createAsyncThunk(
+  "comments/editComment",
+  async ({ postId, commentId, commentData }, { rejectWithValue }) => {
+    try {
+      const { data } = await editComment(postId, commentId, commentData);
+      return data.posts;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+export const deleteUserComment = createAsyncThunk(
+  "comments/deleteComment",
+  async ({ postId, commentId }, { rejectWithValue }) => {
+    try {
+      const { data } = await deleteComment(postId, commentId);
+      return data.posts;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: "post",
   initialState,
@@ -100,6 +146,43 @@ const postSlice = createSlice({
       })
       .addCase(editUserPost.rejected, (state) => {
         state.postEditStatus = "rejected";
+      })
+      .addCase(addUserComment.fulfilled, (state, action) => {
+        state.commentsStatus = "fulfilled";
+        state.allPosts = action.payload;
+        toast.success("Comment Added Successfully!");
+      })
+      .addCase(addUserComment.rejected, (state, action) => {
+        state.commentsStatus = "rejected";
+        state.commentsError = action.payload;
+        toast.error(
+          `Some went wrong, Please try again, ${state.commentsError}`
+        );
+      })
+      .addCase(editUserComment.fulfilled, (state, action) => {
+        state.commentsStatus = "fulfilled";
+        state.allPosts = action.payload;
+        toast.success("Comment Edited Successfully!");
+      })
+      .addCase(editUserComment.rejected, (state, action) => {
+        state.commentsStatus = "rejected";
+        state.commentsError = action.payload;
+        toast.error(
+          `Some went wrong, Please try again, ${state.commentsError}`
+        );
+      })
+      .addCase(deleteUserComment.fulfilled, (state, action) => {
+        state.commentsStatus = "fulfilled";
+        state.allPosts = action.payload;
+        toast.success("Comment Deleted Successfully!");
+      })
+      .addCase(deleteUserComment.rejected, (state, action) => {
+        state.commentsStatus = "rejected";
+        state.commentsError = action.payload;
+        console.log(state.commentsError);
+        toast.error(
+          `Some went wrong, Please try again, ${state.commentsError}`
+        );
       });
   },
 });
