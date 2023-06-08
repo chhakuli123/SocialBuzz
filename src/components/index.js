@@ -9,3 +9,4 @@ export { LoginForm } from "./authentication/LoginForm";
 export { SignupForm } from "./authentication/SignupForm";
 export { Home } from "./home/Home";
 export { PostModal } from "./home/PostModal";
+export { Explore } from "./explore/Explore";
