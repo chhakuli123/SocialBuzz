@@ -2,7 +2,14 @@ import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import "./App.css";
-import { LoginForm, MockAPI, PrivateRoute, SignupForm } from "components";
+import {
+  Explore,
+  Home,
+  LoginForm,
+  MockAPI,
+  PrivateRoute,
+  SignupForm,
+} from "components";
 import { MainContainer } from "main-container";
 
 function App() {
@@ -24,7 +31,10 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route element={<PrivateRoute />}>
-          <Route path="/" element={<MainContainer />} />
+          <Route path="/" element={<MainContainer />}>
+            <Route index element={<Home />} />
+            <Route path="explore" element={<Explore />} />
+          </Route>
           <Route path="/mock" element={<MockAPI />} />
         </Route>
       </Routes>
