@@ -32,6 +32,7 @@ const SearchBar = () => {
   };
 
   return (
+    <div className="ml-4 mr-10 mt-3">
     <div className="relative">
       <div className="p-4 flex items-center bg-white rounded-t-md shadow-md">
         <input
@@ -89,6 +90,7 @@ const SearchBar = () => {
           </div>
         )
       )}
+    </div>
     </div>
   );
 };

@@ -23,73 +23,77 @@ const Sidebar = () => {
   const dispatch = useDispatch();
 
   const isActiveClass = ({ isActive }) =>
-    `flex items-center py-4 px-4 w-full cursor-pointer ${
-      isActive && "py-[0.2rem] px-4 bg-activeGreen rounded-md"
+    `flex items-center text-xl mt-2 py-1.5 rounded-3xl px-4 hover:activeGreen w-full cursor-pointer ${
+      isActive && "bg-activeGreen font-semibold text-deepBlue"
     }`;
 
   return (
-    <aside className="sidebar fixed top-15 z-10 text-deepBlue text-2xl w-[19rem] mt-7 ml-4 cursor-pointer">
-      <ul className="menu hidden lg:flex flex-col">
-        <li className="menu-item">
-          <NavLink exact="true" to="/" className={isActiveClass}>
-            <HomeOutlinedIcon style={{ fontSize: 32 }} className="mr-4" />
-            Home
-          </NavLink>
-        </li>
-        <li className="menu-item">
-          <NavLink exact="true" to="/explore" className={isActiveClass}>
-            <RocketOutlinedIcon style={{ fontSize: 32 }} className="mr-4" />
-            Explore
-          </NavLink>
-        </li>
-        <li className="menu-item">
-          <NavLink exact="true" to="/bookmarks" className={isActiveClass}>
-            <BookmarkBorderOutlinedIcon
-              style={{ fontSize: 32 }}
-              className="mr-4"
-            />
-            Bookmarks
-          </NavLink>
-        </li>
-        <li className="menu-item">
-          <NavLink exact="true" to="/liked-posts" className={isActiveClass}>
-            <FavoriteBorderOutlinedIcon
-              style={{ fontSize: 32 }}
-              className="mr-4"
-            />
-            Liked Posts
-          </NavLink>
-        </li>
-        <li
-          className="menu-item flex items-center py-4 px-5"
-          onClick={() => {
-            dispatch(logout());
-            toast.success("Logged Out!");
-          }}
-        >
-          <LogoutIcon style={{ fontSize: 32 }} className="mr-4" />
-          Log Out
-        </li>
+    <>
+      <aside className="hidden lg:flex xl:w-1/4 px-6 md:flex flex-col height-90vh">
+      <div className="sticky top-24">
 
-        <li className="menu-item mt-10">
-          <button
-            onClick={() =>setIsModalOpen(true)}
-            className="bg-customGreen hover:bg-green-600 w-full flex justify-center items-center py-2 px-5 text-white rounded"
+        <ul className="menu flex flex-col ml-3">
+          <li className="menu-item">
+            <NavLink exact="true" to="/" className={isActiveClass}>
+              <HomeOutlinedIcon style={{ fontSize: 32 }} className="mr-4" />
+              Home
+            </NavLink>
+          </li>
+          <li className="menu-item">
+            <NavLink exact="true" to="/explore" className={isActiveClass}>
+              <RocketOutlinedIcon style={{ fontSize: 32 }} className="mr-4" />
+              Explore
+            </NavLink>
+          </li>
+          <li className="menu-item">
+            <NavLink exact="true" to="/bookmarks" className={isActiveClass}>
+              <BookmarkBorderOutlinedIcon
+                style={{ fontSize: 32 }}
+                className="mr-4"
+              />
+              Bookmarks
+            </NavLink>
+          </li>
+          <li className="menu-item">
+            <NavLink exact="true" to="/liked-posts" className={isActiveClass}>
+              <FavoriteBorderOutlinedIcon
+                style={{ fontSize: 32 }}
+                className="mr-4"
+              />
+              Liked Posts
+            </NavLink>
+          </li>
+          <li
+            className="flex items-center mt-2 py-1.5 rounded-3xl px-4 hover:actieGreen w-full text-xl cursor-pointer"
+            onClick={() => {
+              dispatch(logout());
+              toast.success("Logged Out!");
+            }}
           >
-            <AddCircleOutlineOutlinedIcon
-              style={{ fontSize: 32 }}
-              className="mr-4"
-            />
-            New Post
-          </button>
-        </li>
-      </ul>
-      {isModalOpen && <PostModal onClose={()=>setIsModalOpen(false)} />}
+            <LogoutIcon style={{ fontSize: 32 }} className="mr-4" />
+            Log Out
+          </li>
 
+          <li className="menu-item mt-10">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-customGreen hover:bg-green-600 w-full flex justify-center text-xl items-center py-2 px-5 text-white rounded"
+            >
+              <AddCircleOutlineOutlinedIcon
+                style={{ fontSize: 32 }}
+                className="mr-4"
+              />
+              New Post
+            </button>
+          </li>
+        </ul>
+        </div>
+      </aside>
       {/* -------------------- MenuBar For Mobile -------------------------- */}
-      <div className="menu lg:hidden fixed bottom-0 inset-x-0 bg-deepBlue text-customOrange flex justify-between px-4 py-3">
+
+      <div className="menu md:hidden fixed bottom-0 z-30 inset-x-0 bg-deepBlue text-customOrange flex justify-between px-4 py-3">
         <span
-          onClick={() => navigate("/explore")}
+          onClick={() => navigate("/")}
           className="flex flex-col items-center"
         >
           <HomeOutlinedIcon style={{ fontSize: 35 }} className="text-white" />
@@ -130,17 +134,19 @@ const Sidebar = () => {
       </div>
 
       {/* Position the HistoryEduIcon above the right corner */}
-      <div className="lg:hidden fixed bottom-16 right-0 mb-4 mr-2">
+      <div className="md:hidden fixed bottom-16 z-30 right-0 mb-4 mr-2">
         <div className="bg-customGreen rounded-full w-12 h-12 flex items-center justify-center">
           <span
-            onClick={() =>setIsModalOpen(true)}
+            onClick={() => setIsModalOpen(true)}
             className="text-white text-3xl"
           >
             <HistoryEduIcon style={{ fontSize: 35 }} className="text-white" />
           </span>
         </div>
       </div>
-    </aside>
+      {isModalOpen && <PostModal onClose={() => setIsModalOpen(false)} />}
+
+    </>
   );
 };
 

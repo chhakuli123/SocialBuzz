@@ -12,7 +12,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
-
+    
+// posts from the current user or posts from users whom the current user is following.
   const homePosts = allPosts?.filter(
     (post) =>
       post.username === user.username ||
@@ -22,7 +23,7 @@ const Home = () => {
   );
 
   return (
-    <div className="w-full px-4 py-2 flex flex-col items-center justify-center">
+    <div className="lg:w-1/2 w-full px-4 py-2 relative">
       {homePosts?.length ? (
         <PostList posts={homePosts} />
       ) : (
