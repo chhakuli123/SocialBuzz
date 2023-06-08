@@ -31,7 +31,7 @@ const Post = ({ post, user, allUsers }) => {
 
   return (
     <div
-      className="text-deepBlue border border-gray-300 bg-white rounded-md p-4 mb-4 w-full md:w-[40rem]"
+      className="text-deepBlue border border-gray-300 bg-white px-6 py-4 rounded-lg shadow-lg w-full mt-4 flex h-fit flex-col "
       key={post._id}
     >
       <div className="flex items-center flex-wrap mb-2">
@@ -95,7 +95,7 @@ const Post = ({ post, user, allUsers }) => {
         <img
           src={post.mediaURL}
           alt="post media"
-          className="mt-4 mb-2 h-[20rem] w-full md:w-[40rem] md:h-[30rem] rounded-md"
+          className="mt-4 mb-2 w-full rounded-md"
         />
       )}
 

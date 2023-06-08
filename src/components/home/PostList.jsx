@@ -11,9 +11,9 @@ const PostList = ({ posts }) => {
   const sortedPosts = posts
     ? [...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     : [];
-    
+
   return (
-    <div className="flex flex-col items-center justify-center w-full mt-5 mb-12 lg:mr-[5rem]">
+    <div className="flex flex-col items-center   relative">
       <PostForm />
       {sortedPosts.map((post) => {
         const user = allUsers.find((user) => user.username === post.username);
