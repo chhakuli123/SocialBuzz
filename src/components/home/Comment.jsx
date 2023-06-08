@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { addUserComment, deleteUserComment, editUserComment } from "slices";
 import { SendIcon } from "asset";
 import { CommentItem } from "./CommentItem";
 
-const Comment = ({ post, user, allUsers }) => {
+const Comment = ({ post, allUsers }) => {
   const [commentText, setCommentText] = useState("");
   const [editingComment, setEditingComment] = useState(null);
+  const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
