@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Post } from "./Post";
-import { PostForm } from "./PostForm";
 
 const PostList = ({ posts }) => {
   const { allUsers } = useSelector((state) => state.user);
@@ -13,12 +12,10 @@ const PostList = ({ posts }) => {
     : [];
 
   return (
-    <div className="flex flex-col items-center   relative">
-      <PostForm />
+    <div className="flex flex-col items-center relative">
       {sortedPosts.map((post) => {
-        const user = allUsers.find((user) => user.username === post.username);
         return (
-          <Post key={post._id} post={post} user={user} allUsers={allUsers} />
+          <Post key={post._id} post={post} allUsers={allUsers} />
         );
       })}
     </div>
