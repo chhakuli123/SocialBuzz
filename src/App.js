@@ -5,6 +5,7 @@ import "./App.css";
 import {
   Explore,
   Home,
+  LikedPosts,
   LoginForm,
   MockAPI,
   PrivateRoute,
@@ -34,6 +35,7 @@ function App() {
           <Route path="/" element={<MainContainer />}>
             <Route index element={<Home />} />
             <Route path="explore" element={<Explore />} />
+            <Route path="liked-posts" element={<LikedPosts />} />
           </Route>
           <Route path="/mock" element={<MockAPI />} />
         </Route>
