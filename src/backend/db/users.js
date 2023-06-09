@@ -68,6 +68,7 @@ export const users = [
     username: "jameswilson",
     password: "james123",
     bio: "Musician",
+    bookmarks: [],
     avatarUrl:
       "https://res.cloudinary.com/dptfwcnro/image/upload/v1685595800/SocialBuzz/images_wxjv0c.jpg",
     website: "https://jameswilson.com/",
