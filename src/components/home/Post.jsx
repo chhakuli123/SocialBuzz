@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   MoreVertIcon,
@@ -8,37 +8,42 @@ import {
   BookmarkBorderIcon,
   MapsUgcOutlinedIcon,
 } from "asset";
-import { deleteUserPost } from "slices";
-import { EditPostModal } from "./EditPostModel";
+import { deleteUserPost, likeDislikeUserPost } from "slices";
 import { useOutsideClick } from "hooks";
+import { EditPostModal } from "./EditPostModel";
 import { Comment } from "./Comment";
 
-const Post = ({ post, user, allUsers }) => {
+const Post = ({ post, allUsers }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showCommentSection, setShowCommentSection] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
+  
   const domNode = useOutsideClick(() => {
     setShowOptions(false);
   });
-
+  
   const handleEditIconClick = () => {
     setShowOptions(false);
     setShowEditModal(true);
   };
 
+  const postUser = allUsers.find((user) => user.username === post.username);
+
+  const isLiked =post?.likes?.likedBy?.some((likeUser) => likeUser?._id === user?._id);
+
   return (
     <div
-      className="text-deepBlue border border-gray-300 bg-white px-6 py-4 rounded-lg shadow-lg w-full mt-4 flex h-fit flex-col "
+      className="text-deepBlue border border-gray-300 bg-white px-6 py-4 rounded-lg shadow-lg w-full mt-3 flex h-fit flex-col "
       key={post._id}
     >
       <div className="flex items-center flex-wrap mb-2">
         {/* User avatar */}
-        {user?.avatarUrl ? (
+        {postUser?.avatarUrl ? (
           <img
-            src={user.avatarUrl}
+            src={postUser.avatarUrl}
             alt="user avatar"
             className="w-10 h-10 rounded-full mb-2 md:mb-0 md:mr-2"
           />
@@ -52,9 +57,9 @@ const Post = ({ post, user, allUsers }) => {
 
         {/* User details */}
         <div className="flex flex-col">
-          {user && (
+          {postUser && (
             <p className="font-semibold">
-              {user.firstName} {user.lastName}
+              {postUser.firstName} {postUser.lastName}
             </p>
           )}
           <p className="text-md text-gray-500">
@@ -101,18 +106,27 @@ const Post = ({ post, user, allUsers }) => {
 
       {/* Like and Bookmark */}
       <div className="flex items-center mt-4 cursor-pointer">
-        {post.likes?.likedByUser ? (
-          <ThumbUpIcon style={{ fontSize: "2rem" }} />
-        ) : (
-          <ThumbUpOffAltIcon style={{ fontSize: "2rem" }} />
-        )}
-        <p className="mr-2">{post.likes?.likeCount}</p>
+        <span
+          className="flex items-center"
+          onClick={() => {
+            dispatch(
+              likeDislikeUserPost({ postId: post._id, isLiked: isLiked })
+            );
+          }}
+        >
+          {isLiked ? (
+            <ThumbUpIcon style={{ fontSize: "2rem" }} />
+          ) : (
+            <ThumbUpOffAltIcon style={{ fontSize: "2rem" }} />
+          )}
+          <p className="ml-1 mr-2">{post.likes?.likeCount}</p>
+        </span>
 
         <MapsUgcOutlinedIcon
           style={{ fontSize: "2rem" }}
           onClick={() => setShowCommentSection(!showCommentSection)}
         />
-        <p className="mr-2">{post?.comments?.length}</p>
+        <p className="mr-1">{post?.comments?.length}</p>
 
         <BookmarkBorderIcon style={{ fontSize: "2rem" }} />
       </div>
@@ -121,7 +135,7 @@ const Post = ({ post, user, allUsers }) => {
       {showCommentSection && (
         <Comment
           post={post}
-          user={user}
+          user={postUser}
           allUsers={allUsers}
           showCommentSection={showCommentSection}
         />
