@@ -5,5 +5,7 @@ export {
   addPost,
   deletePost,
   editPost,
+  likePost,
+  dislikePost,
 } from "./postsServices";
 export { addComment, editComment, deleteComment } from "./commentServices";
