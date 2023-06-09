@@ -1,6 +1,10 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
