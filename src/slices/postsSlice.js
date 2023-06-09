@@ -9,6 +9,8 @@ import {
   editComment,
   editPost,
   getAllPostsFromServer,
+  likePost,
+  dislikePost,
 } from "services";
 
 const initialState = {
@@ -110,6 +112,22 @@ export const deleteUserComment = createAsyncThunk(
   }
 );
 
+export const likeDislikeUserPost = createAsyncThunk(
+  "post/likeDislikeUserPost",
+  async ({ postId, isLiked }, { rejectWithValue }) => {
+    try {
+      const { data } = isLiked
+        ? await dislikePost(postId)
+        : await likePost(postId);
+      const toastMessage = isLiked ? "Post Disliked!" : "Post Liked!";
+      toast.success(toastMessage);
+      return data.posts;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: "post",
   initialState,
@@ -179,10 +197,16 @@ const postSlice = createSlice({
       .addCase(deleteUserComment.rejected, (state, action) => {
         state.commentsStatus = "rejected";
         state.commentsError = action.payload;
-        console.log(state.commentsError);
         toast.error(
           `Some went wrong, Please try again, ${state.commentsError}`
         );
+      })
+      .addCase(likeDislikeUserPost.fulfilled, (state, action) => {
+        state.getAllPostsStatus = "fulfilled";
+        state.allPosts = action.payload;
+      })
+      .addCase(likeDislikeUserPost.rejected, (state) => {
+        state.getAllPostsStatus = "rejected";
       });
   },
 });
