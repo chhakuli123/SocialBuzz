@@ -32,4 +32,29 @@ const editPost = (postData) =>
     }
   );
 
-export { getAllPostsFromServer, addPost, deletePost, editPost };
+const likePost = (postId) =>
+  axios.post(
+    `/api/posts/like/${postId}`,
+    {},
+    {
+      headers: { authorization: localStorage.getItem("token") },
+    }
+  );
+
+const dislikePost = (postId) =>
+  axios.post(
+    `/api/posts/dislike/${postId}`,
+    {},
+    {
+      headers: { authorization: localStorage.getItem("token") },
+    }
+  );
+
+export {
+  getAllPostsFromServer,
+  addPost,
+  deletePost,
+  editPost,
+  likePost,
+  dislikePost,
+};
