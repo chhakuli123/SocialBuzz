@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -7,8 +7,9 @@ import {
   ThumbUpIcon,
   BookmarkBorderIcon,
   MapsUgcOutlinedIcon,
+  BookmarkIcon,
 } from "asset";
-import { deleteUserPost, likeDislikeUserPost } from "slices";
+import { bookmarkUnbookmarkUserPost, deleteUserPost,likeDislikeUserPost } from "slices";
 import { useOutsideClick } from "hooks";
 import { EditPostModal } from "./EditPostModel";
 import { Comment } from "./Comment";
@@ -19,20 +20,26 @@ const Post = ({ post, allUsers }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
+  const bookmarks = useSelector((state) => state.post.bookmarks);
   const dispatch = useDispatch();
-  
+
   const domNode = useOutsideClick(() => {
     setShowOptions(false);
   });
-  
+
   const handleEditIconClick = () => {
     setShowOptions(false);
     setShowEditModal(true);
   };
-
+  const {
+    _id,
+  } = post;
   const postUser = allUsers.find((user) => user.username === post.username);
 
-  const isLiked =post?.likes?.likedBy?.some((likeUser) => likeUser?._id === user?._id);
+  const isLiked = post?.likes?.likedBy?.some(
+    (likeUser) => likeUser?._id === user?._id
+  );
+  const isBookmarked = bookmarks?.some((post) => post._id === _id);
 
   return (
     <div
@@ -127,10 +134,20 @@ const Post = ({ post, allUsers }) => {
           onClick={() => setShowCommentSection(!showCommentSection)}
         />
         <p className="mr-1">{post?.comments?.length}</p>
-
-        <BookmarkBorderIcon style={{ fontSize: "2rem" }} />
+        <span className="flex items-center"   onClick={() =>
+                dispatch(
+                  bookmarkUnbookmarkUserPost({ postId: _id, isBookmarked })
+                )
+              }>
+          {isBookmarked? (
+            <BookmarkIcon style={{ fontSize: "2rem" }}/>
+          ) : (
+            <BookmarkBorderIcon style={{ fontSize: "2rem" }} /> 
+          )}
+        </span>
       </div>
-
+  
+             
       {/* Comments */}
       {showCommentSection && (
         <Comment
