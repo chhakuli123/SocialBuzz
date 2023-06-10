@@ -11,10 +11,15 @@ import {
   getAllPostsFromServer,
   likePost,
   dislikePost,
+  bookmarkPost,
+  unBookmarkPost,
+  getBookmarks,
 } from "services";
 
 const initialState = {
   allPosts: [],
+  bookmarks: [],
+  bookmarkStatus: "idle",
   getAllPostsStatus: "idle",
   postAddStatus: "idle",
   postDeleteStatus: "idle",
@@ -127,6 +132,30 @@ export const likeDislikeUserPost = createAsyncThunk(
     }
   }
 );
+export const fetchAllBookmarks = createAsyncThunk(
+  "post/getBookmarks",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await getBookmarks();
+      return data.bookmarks;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+export const bookmarkUnbookmarkUserPost = createAsyncThunk(
+  "post/bookmarkUnbookmarkUserPost",
+  async ({ postId, isBookmarked }, { rejectWithValue }) => {
+    try {
+      const { data } = isBookmarked
+        ? await unBookmarkPost(postId)
+        : await bookmarkPost(postId);
+      return data.bookmarks;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
 
 const postSlice = createSlice({
   name: "post",
@@ -207,6 +236,20 @@ const postSlice = createSlice({
       })
       .addCase(likeDislikeUserPost.rejected, (state) => {
         state.getAllPostsStatus = "rejected";
+      })
+      .addCase(fetchAllBookmarks.fulfilled, (state, action) => {
+        state.bookmarkStatus = "fulfilled";
+        state.bookmarks = action.payload;
+      })
+      .addCase(fetchAllBookmarks.rejected, (state) => {
+        state.bookmarkStatus = "rejected";
+      })
+      .addCase(bookmarkUnbookmarkUserPost.fulfilled, (state, action) => {
+        state.bookmarkStatus = "fulfilled";
+        state.bookmarks = action.payload;
+      })
+      .addCase(bookmarkUnbookmarkUserPost.rejected, (state) => {
+        state.bookmarkStatus = "rejected";
       });
   },
 });
