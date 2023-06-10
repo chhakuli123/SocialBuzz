@@ -9,4 +9,7 @@ export {
   addUserComment,
   editUserComment,
   deleteUserComment,
+  likeDislikeUserPost,
+  fetchAllBookmarks,
+  bookmarkUnbookmarkUserPost,
 } from "./postsSlice";

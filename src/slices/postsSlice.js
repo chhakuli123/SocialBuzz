@@ -9,10 +9,17 @@ import {
   editComment,
   editPost,
   getAllPostsFromServer,
+  likePost,
+  dislikePost,
+  bookmarkPost,
+  unBookmarkPost,
+  getBookmarks,
 } from "services";
 
 const initialState = {
   allPosts: [],
+  bookmarks: [],
+  bookmarkStatus: "idle",
   getAllPostsStatus: "idle",
   postAddStatus: "idle",
   postDeleteStatus: "idle",
@@ -110,6 +117,46 @@ export const deleteUserComment = createAsyncThunk(
   }
 );
 
+export const likeDislikeUserPost = createAsyncThunk(
+  "post/likeDislikeUserPost",
+  async ({ postId, isLiked }, { rejectWithValue }) => {
+    try {
+      const { data } = isLiked
+        ? await dislikePost(postId)
+        : await likePost(postId);
+      const toastMessage = isLiked ? "Post Disliked!" : "Post Liked!";
+      toast.success(toastMessage);
+      return data.posts;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+export const fetchAllBookmarks = createAsyncThunk(
+  "post/getBookmarks",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await getBookmarks();
+      return data.bookmarks;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+export const bookmarkUnbookmarkUserPost = createAsyncThunk(
+  "post/bookmarkUnbookmarkUserPost",
+  async ({ postId, isBookmarked }, { rejectWithValue }) => {
+    try {
+      const { data } = isBookmarked
+        ? await unBookmarkPost(postId)
+        : await bookmarkPost(postId);
+      return data.bookmarks;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: "post",
   initialState,
@@ -179,10 +226,30 @@ const postSlice = createSlice({
       .addCase(deleteUserComment.rejected, (state, action) => {
         state.commentsStatus = "rejected";
         state.commentsError = action.payload;
-        console.log(state.commentsError);
         toast.error(
           `Some went wrong, Please try again, ${state.commentsError}`
         );
+      })
+      .addCase(likeDislikeUserPost.fulfilled, (state, action) => {
+        state.getAllPostsStatus = "fulfilled";
+        state.allPosts = action.payload;
+      })
+      .addCase(likeDislikeUserPost.rejected, (state) => {
+        state.getAllPostsStatus = "rejected";
+      })
+      .addCase(fetchAllBookmarks.fulfilled, (state, action) => {
+        state.bookmarkStatus = "fulfilled";
+        state.bookmarks = action.payload;
+      })
+      .addCase(fetchAllBookmarks.rejected, (state) => {
+        state.bookmarkStatus = "rejected";
+      })
+      .addCase(bookmarkUnbookmarkUserPost.fulfilled, (state, action) => {
+        state.bookmarkStatus = "fulfilled";
+        state.bookmarks = action.payload;
+      })
+      .addCase(bookmarkUnbookmarkUserPost.rejected, (state) => {
+        state.bookmarkStatus = "rejected";
       });
   },
 });
