@@ -13,3 +13,4 @@ export { PostList } from "./home/PostList";
 export { PostForm } from "./home/PostForm";
 export { Explore } from "./explore/Explore";
 export { LikedPosts } from "./liked-posts/LikedPosts";
+export { Bookmark } from "./Bookmark/Bookmark";

@@ -1,5 +1,10 @@
 export { loginService, signUpService } from "./authServices";
-export { getAllUsers } from "./userServices";
+export {
+  getAllUsers,
+  getBookmarks,
+  bookmarkPost,
+  unBookmarkPost,
+} from "./userServices";
 export {
   getAllPostsFromServer,
   addPost,
