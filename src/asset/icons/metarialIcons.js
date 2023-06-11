@@ -27,6 +27,8 @@ import ClearIcon from "@mui/icons-material/Clear";
 import MapsUgcOutlinedIcon from "@mui/icons-material/MapsUgcOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 export {
   DarkModeOutlinedIcon,
   LightModeOutlinedIcon,
@@ -57,4 +59,6 @@ export {
   MapsUgcOutlinedIcon,
   ThumbDownAltIcon,
   EditIcon,
+  MoreHorizIcon,
+  PersonOutlineIcon,
 };

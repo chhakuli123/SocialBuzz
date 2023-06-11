@@ -12,20 +12,21 @@ const Explore = () => {
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
-  
+
   //posts from users other than the current user and whom the current user is not following.
   const explorePosts = allPosts?.filter(
     (post) =>
-      post.username !== user.username &&
-      !user.following.find(
-        (followingUser) => followingUser.username === post.username
+      post.username !== user?.username &&
+      !user?.following?.find(
+        (followingUser) => followingUser?.username === post?.username
       )
   );
 
   return (
     <div className="lg:w-1/2 w-full px-4 relative">
+      <p className="font-semibold text-2xl text-deepBlue mb-2">Explore</p>
       {explorePosts?.length ? (
-        <PostList posts={explorePosts}/>
+        <PostList posts={explorePosts} />
       ) : (
         <p className="text-deepBlue text-2xl text-center font-semibold">
           No more posts available to explore!
@@ -34,4 +35,5 @@ const Explore = () => {
     </div>
   );
 };
+
 export { Explore };

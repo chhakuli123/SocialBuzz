@@ -1,5 +1,11 @@
-export { loginUser, signupUser, authReducer, logout } from "./authSlice";
-export { userReducer, fetchAllUsers } from "./userSlice";
+export {
+  loginUser,
+  signupUser,
+  authReducer,
+  logout,
+  editUserDetails,
+} from "./authSlice";
+export { userReducer, fetchAllUsers, fetchUserDetails } from "./userSlice";
 export {
   postReducer,
   getPosts,
@@ -12,4 +18,5 @@ export {
   likeDislikeUserPost,
   fetchAllBookmarks,
   bookmarkUnbookmarkUserPost,
+  fetchUserPosts,
 } from "./postsSlice";

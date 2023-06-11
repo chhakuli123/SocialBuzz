@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import EmojiPicker from "emoji-picker-react";
 
-import { editUserPost } from "slices";
 import {
   AddPhotoAlternateOutlinedIcon,
   AddReactionOutlinedIcon,
   ClearIcon,
 } from "asset";
+import { editUserPost } from "slices";
 import { useOutsideClick } from "hooks";
 
 const EditPostModal = ({ post, onClose }) => {
@@ -119,7 +119,7 @@ const EditPostModal = ({ post, onClose }) => {
 
         <div className="flex justify-end">
           <button
-            className="px-4 py-2 bg-customGreen text-white rounded-md"
+            className="px-4 py-2 bg-deepBlue text-white rounded-md"
             onClick={handleEditPost}
           >
             Update

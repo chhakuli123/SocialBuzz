@@ -110,7 +110,7 @@ const PostModal = ({ onClose }) => {
 
         <div className="flex justify-end">
           <button
-            className="px-4 py-2 bg-customGreen text-white rounded-md"
+            className="px-4 py-2 bg-deepBlue text-white rounded-md"
             onClick={handleCreatePost}
           >
             Create

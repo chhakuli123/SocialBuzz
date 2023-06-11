@@ -1,11 +1,11 @@
-import { PostList } from "components";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+import { PostList } from "components";
 import { fetchAllBookmarks } from "slices";
 
-
-export const Bookmark = () => {
-  const { allPosts,bookmarks } = useSelector((state) => state.post);
+const Bookmark = () => {
+  const { allPosts, bookmarks } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,6 +18,7 @@ export const Bookmark = () => {
 
   return (
     <div className="lg:w-1/2 w-full px-4 py-2 relative">
+      <p className="font-semibold text-2xl text-deepBlue mb-2">Bookmarks</p>
       {bookmarkPost.length !== 0 ? (
         <PostList posts={bookmarkPost} />
       ) : (
@@ -28,3 +29,5 @@ export const Bookmark = () => {
     </div>
   );
 };
+
+export { Bookmark };

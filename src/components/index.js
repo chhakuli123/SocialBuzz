@@ -14,3 +14,7 @@ export { PostForm } from "./home/PostForm";
 export { Explore } from "./explore/Explore";
 export { LikedPosts } from "./liked-posts/LikedPosts";
 export { Bookmark } from "./Bookmark/Bookmark";
+export { UserDetails } from "./UserDetails/UserDetails";
+export { ProfileModal } from "./ProfileModal/ProfileModal";
+export { UserProfile } from "./UserProfile/UserProfile";
+export { Profile } from "./Profile/Profile";

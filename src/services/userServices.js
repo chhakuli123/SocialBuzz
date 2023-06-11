@@ -2,6 +2,18 @@ import axios from "axios";
 
 export const getAllUsers = () => axios.get("/api/users");
 
+export const getUserByUsername = (username) =>
+  axios.get(`/api/users/${username}`);
+
+export const editUserData = (userData) =>
+  axios.post(
+    `/api/users/edit`,
+    { userData },
+    {
+      headers: { authorization: localStorage.getItem("token") },
+    }
+  );
+
 export const getBookmarks = () =>
   axios.get(`/api/users/bookmark`, {
     headers: { authorization: localStorage.getItem("token") },

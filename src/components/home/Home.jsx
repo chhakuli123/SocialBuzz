@@ -17,9 +17,9 @@ const Home = () => {
   // posts from the current user or posts from users whom the current user is following.
   const homePosts = allPosts?.filter(
     (post) =>
-      post.username === user.username ||
-      user.following.find(
-        (followingUser) => followingUser.username === post.username
+      post?.username === user?.username ||
+      user?.following?.find(
+        (followingUser) => followingUser?.username === post?.username
       )
   );
 

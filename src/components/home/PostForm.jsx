@@ -114,7 +114,7 @@ const PostForm = () => {
 
         <button
           onClick={handlePostClick}
-          className="bg-customGreen hover:bg-green-500 text-white font-semibold py-1 px-8 text-xl rounded"
+          className="bg-deepBlue text-white font-semibold py-1 px-8 text-xl rounded"
         >
           Post
         </button>

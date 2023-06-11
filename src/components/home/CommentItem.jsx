@@ -26,7 +26,21 @@ const CommentItem = ({
   return (
     <div key={comment._id} className="flex mt-2 p-2 mb-2">
       {/* Comment user avatar */}
-      {commentUser?.avatarUrl ? (
+      {isCurrentUserComment ? (
+        user?.avatarUrl ? (
+          <img
+            src={user?.avatarUrl}
+            alt="current user avatar"
+            className="w-8 h-8 rounded-full mr-2"
+          />
+        ) : (
+          <img
+            src="https://res.cloudinary.com/dptfwcnro/image/upload/v1686139004/SocialBuzz/images_zig8rk.png"
+            alt="default avatar"
+            className="w-10 h-8 rounded-full mb-2 md:mb-0 md:mr-2"
+          />
+        )
+      ) : commentUser?.avatarUrl ? (
         <img
           src={commentUser.avatarUrl}
           alt="comment user avatar"
@@ -35,7 +49,7 @@ const CommentItem = ({
       ) : (
         <img
           src="https://res.cloudinary.com/dptfwcnro/image/upload/v1686139004/SocialBuzz/images_zig8rk.png"
-          alt="avtar"
+          alt="default avatar"
           className="w-10 h-8 rounded-full mb-2 md:mb-0 md:mr-2"
         />
       )}
@@ -43,9 +57,13 @@ const CommentItem = ({
       {/* Comment content */}
       <div className="bg-gray-200 px-4 py-1 w-full rounded-md sm:rounded-tl-none sm:rounded-[1rem]">
         <div className="font-semibold flex justify-between">
-          <span>
-            {commentUser?.firstName} {commentUser?.lastName}
-          </span>
+          {isCurrentUserComment ? (
+            <span>{user?.firstName} {user?.lastName}</span>
+          ) : commentUser ? (
+            <span>{commentUser?.firstName} {commentUser?.lastName}</span>
+          ) : (
+            <span>Unknown User</span>
+          )}
           {isCurrentUserComment && (
             <div className="relative" ref={domNode}>
               <MoreVertIcon
@@ -76,4 +94,5 @@ const CommentItem = ({
     </div>
   );
 };
+
 export { CommentItem };

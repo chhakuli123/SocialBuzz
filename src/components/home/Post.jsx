@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -9,7 +9,11 @@ import {
   MapsUgcOutlinedIcon,
   BookmarkIcon,
 } from "asset";
-import { bookmarkUnbookmarkUserPost, deleteUserPost,likeDislikeUserPost } from "slices";
+import {
+  bookmarkUnbookmarkUserPost,
+  deleteUserPost,
+  likeDislikeUserPost,
+} from "slices";
 import { useOutsideClick } from "hooks";
 import { EditPostModal } from "./EditPostModel";
 import { Comment } from "./Comment";
@@ -20,7 +24,7 @@ const Post = ({ post, allUsers }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
-  const bookmarks = useSelector((state) => state.post.bookmarks);
+  const {bookmarks} = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   const domNode = useOutsideClick(() => {
@@ -31,10 +35,9 @@ const Post = ({ post, allUsers }) => {
     setShowOptions(false);
     setShowEditModal(true);
   };
-  const {
-    _id,
-  } = post;
+  const { _id } = post;
   const postUser = allUsers.find((user) => user.username === post.username);
+  const isOwnedByUser = post.username === user.username;
 
   const isLiked = post?.likes?.likedBy?.some(
     (likeUser) => likeUser?._id === user?._id
@@ -44,13 +47,19 @@ const Post = ({ post, allUsers }) => {
   return (
     <div
       className="text-deepBlue border border-gray-300 bg-white px-6 py-4 rounded-lg shadow-lg w-full mt-3 flex h-fit flex-col "
-      key={post._id}
+      key={post?._id}
     >
       <div className="flex items-center flex-wrap mb-2">
         {/* User avatar */}
-        {postUser?.avatarUrl ? (
+        {isOwnedByUser && user.avatarUrl ? (
           <img
-            src={postUser.avatarUrl}
+            src={user?.avatarUrl}
+            alt="user avatar"
+            className="w-10 h-10 rounded-full mb-2 md:mb-0 md:mr-2"
+          />
+        ) : postUser?.avatarUrl ? (
+          <img
+            src={postUser?.avatarUrl}
             alt="user avatar"
             className="w-10 h-10 rounded-full mb-2 md:mb-0 md:mr-2"
           />
@@ -64,13 +73,19 @@ const Post = ({ post, allUsers }) => {
 
         {/* User details */}
         <div className="flex flex-col">
-          {postUser && (
+          {isOwnedByUser ? (
             <p className="font-semibold">
-              {postUser.firstName} {postUser.lastName}
+              {user.firstName} {user.lastName}
             </p>
+          ) : (
+            postUser && (
+              <p className="font-semibold">
+                {postUser.firstName} {postUser.lastName}
+              </p>
+            )
           )}
           <p className="text-md text-gray-500">
-            @{post.username} -
+            {isOwnedByUser ? user.username : post.username} -{" "}
             {new Date(post.createdAt).toLocaleDateString("en-US")}
           </p>
         </div>
@@ -105,7 +120,7 @@ const Post = ({ post, allUsers }) => {
       {/* Post Image */}
       {post.mediaURL && (
         <img
-          src={post.mediaURL}
+          src={post?.mediaURL}
           alt="post media"
           className="mt-4 mb-2 w-full rounded-md"
         />
@@ -134,20 +149,21 @@ const Post = ({ post, allUsers }) => {
           onClick={() => setShowCommentSection(!showCommentSection)}
         />
         <p className="mr-1">{post?.comments?.length}</p>
-        <span className="flex items-center"   onClick={() =>
-                dispatch(
-                  bookmarkUnbookmarkUserPost({ postId: _id, isBookmarked })
-                )
-              }>
-          {isBookmarked? (
-            <BookmarkIcon style={{ fontSize: "2rem" }}/>
+
+        <span
+          className="flex items-center"
+          onClick={() =>
+            dispatch(bookmarkUnbookmarkUserPost({ postId: _id, isBookmarked }))
+          }
+        >
+          {isBookmarked ? (
+            <BookmarkIcon style={{ fontSize: "2rem" }} />
           ) : (
-            <BookmarkBorderIcon style={{ fontSize: "2rem" }} /> 
+            <BookmarkBorderIcon style={{ fontSize: "2rem" }} />
           )}
         </span>
       </div>
-  
-             
+
       {/* Comments */}
       {showCommentSection && (
         <Comment

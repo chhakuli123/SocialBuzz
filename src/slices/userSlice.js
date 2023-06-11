@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { toast } from "react-hot-toast";
-import { getAllUsers } from "services";
+import { getAllUsers, getUserByUsername } from "services";
 
 const initialState = {
   allUsers: [],
   allUserStatus: "idle",
   allUsersError: null,
+  userDetails: {},
+  userDetailsError: null,
 };
 
 export const fetchAllUsers = createAsyncThunk(
@@ -17,6 +18,18 @@ export const fetchAllUsers = createAsyncThunk(
       return data.users;
     } catch (e) {
       console.error("Error:", e);
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+export const fetchUserDetails = createAsyncThunk(
+  "post/getUserByUsername",
+  async (username, { rejectWithValue }) => {
+    try {
+      const { data } = await getUserByUsername(username);
+      return data.user;
+    } catch (e) {
       return rejectWithValue(e.message);
     }
   }
@@ -35,9 +48,14 @@ const userSlice = createSlice({
       .addCase(fetchAllUsers.rejected, (state, action) => {
         state.allUserStatus = "rejected";
         state.allUsersError = action.payload;
-        toast.error(
-          `Some went wrong, Please try again, ${state.allUsersError}`
-        );
+      })
+      .addCase(fetchUserDetails.fulfilled, (state, action) => {
+        state.userDetailsStatus = "fulfilled";
+        state.userDetails = action.payload;
+      })
+      .addCase(fetchUserDetails.rejected, (state, action) => {
+        state.userDetailsStatus = "rejected";
+        state.userDetailsError = action.payload;
       });
   },
 });

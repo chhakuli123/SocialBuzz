@@ -45,28 +45,30 @@ export const editUserHandler = function (schema, request) {
   let user = requiresAuth.call(this, request);
   try {
     if (!user) {
+      console.log("User not found");
       return new Response(
         404,
         {},
         {
           errors: [
-            "The username you entered is not Registered. Not Found error",
+            "The username you entered is not registered. Not Found error",
           ],
         }
       );
     }
+
     const { userData } = JSON.parse(request.requestBody);
-    user = { ...user, ...userData, updatedAt: formatDate() };
-    this.db.users.update({ _id: user._id }, user);
-    return new Response(201, {}, { user });
+
+    const { ...updatedUserData } = userData;
+
+    user = { ...user.attrs, ...updatedUserData, updatedAt: formatDate() };
+
+    this.db.users.update(user.id, user);
+
+    const response = new Response(201, {}, { user });
+    return response;
   } catch (error) {
-    return new Response(
-      500,
-      {},
-      {
-        error,
-      }
-    );
+    return new Response(500, {}, { error });
   }
 };
 
@@ -215,6 +217,17 @@ export const followUserHandler = function (schema, request) {
         }
       );
     }
+
+    if (user._id === followUser._id) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: ["You cannot follow yourself"],
+        }
+      );
+    }
+
     const isFollowing = user.following.some(
       (currUser) => currUser._id === followUser._id
     );
