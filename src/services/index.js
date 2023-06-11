@@ -1,6 +1,8 @@
 export { loginService, signUpService } from "./authServices";
 export {
   getAllUsers,
+  editUserData,
+  getUserByUsername,
   getBookmarks,
   bookmarkPost,
   unBookmarkPost,
@@ -12,5 +14,6 @@ export {
   editPost,
   likePost,
   dislikePost,
+  getPostsByUserName,
 } from "./postsServices";
 export { addComment, editComment, deleteComment } from "./commentServices";
