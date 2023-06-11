@@ -20,8 +20,9 @@ const LikedPosts = () => {
 
   return (
     <div className="lg:w-1/2 w-full px-4 relative">
+      <p className="font-semibold text-2xl text-deepBlue mb-2">Liked Posts</p>
       {postsLikedByUser.length !== 0 ? (
-        <PostList posts={postsLikedByUser}/>
+        <PostList posts={postsLikedByUser} />
       ) : (
         <p className="text-deepBlue text-2xl text-center font-semibold">
           No Liked Posts Yet!
