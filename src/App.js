@@ -10,7 +10,9 @@ import {
   LoginForm,
   MockAPI,
   PrivateRoute,
+  Profile,
   SignupForm,
+  UserProfile,
 } from "components";
 import { MainContainer } from "main-container";
 
@@ -38,6 +40,8 @@ function App() {
             <Route path="explore" element={<Explore />} />
             <Route path="liked-posts" element={<LikedPosts />} />
             <Route path="bookmarks" element={<Bookmark />} />
+            <Route path="user-profile" element={<UserProfile />} />
+            <Route path="profile/:username" element={<Profile />} />
           </Route>
           <Route path="/mock" element={<MockAPI />} />
         </Route>
