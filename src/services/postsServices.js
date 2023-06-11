@@ -2,6 +2,9 @@ import axios from "axios";
 
 const getAllPostsFromServer = () => axios.get("/api/posts");
 
+export const getPostsByUserName = (username) =>
+  axios.get(`/api/posts/user/${username}`);
+
 const addPost = (postData) => {
   return axios.post(
     "/api/posts",
