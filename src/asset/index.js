@@ -28,4 +28,6 @@ export {
   MapsUgcOutlinedIcon,
   ThumbDownAltIcon,
   EditIcon,
+  MoreHorizIcon,
+  PersonOutlineIcon,
 } from "./icons/metarialIcons";
