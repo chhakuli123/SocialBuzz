@@ -167,6 +167,10 @@ export const bookmarkUnbookmarkUserPost = createAsyncThunk(
       const { data } = isBookmarked
         ? await unBookmarkPost(postId)
         : await bookmarkPost(postId);
+      const toastMessage = isBookmarked
+        ? "Post UnBookmarked!"
+        : "Post Bookmarked!";
+      toast.success(toastMessage);
       return data.bookmarks;
     } catch (e) {
       return rejectWithValue(e.message);
