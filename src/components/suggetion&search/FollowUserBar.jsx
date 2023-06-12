@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import { fetchAllUsers, followUnfollowUser } from "slices";
 import { SearchBar } from "./SearchBar";
+import { ShimmerUserCard } from "components";
 
 const FollowUserBar = () => {
   const { user } = useSelector((state) => state.auth);
-  const { allUsers } = useSelector((state) => state.user);
+  const { allUsers,allUserStatus } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,18 +39,20 @@ const FollowUserBar = () => {
         <SearchBar />
         <div className="ml-4 mr-10 bg-white px-4 py-4 my-4 border rounded-lg shadow-lg flex h-fit flex-col gap-6">
           <p className="font-semibold">Who to follow?</p>
-          {followData.length === 0 ? (
+          {allUserStatus === "pending" ? (
+            <ShimmerUserCard />
+          ) : followData.length === 0 ? (
             <div className="text-center">No Suggestions</div>
           ) : (
             followData.map((user) => (
               <div
-                className="flex items-center justify-between"
+                className="flex items-center justify-between cursor-pointer"
                 key={user?.username}
               >
                 <div className="flex items-center gap-2">
                   <img
                     alt="avatar"
-                    className="w-12 h-12 rounded-full cursor-pointer"
+                    className="w-12 h-12 rounded-full"
                     src={user?.avatarUrl}
                     onClick={() => handleNavigate(user?.username)}
                   />
@@ -57,7 +60,7 @@ const FollowUserBar = () => {
                     className="flex flex-col"
                     onClick={() => handleNavigate(user?.username)}
                   >
-                    <p className="font-semibold cursor-pointer">
+                    <p className="font-semibold">
                       {user?.firstName} {user?.lastName}
                     </p>
                     <p className="text-sm text-gray-400">@{user?.username}</p>
@@ -86,5 +89,6 @@ const FollowUserBar = () => {
     </div>
   );
 };
+
 
 export { FollowUserBar };

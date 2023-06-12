@@ -184,12 +184,18 @@ const postSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(getPosts.pending, (state) => {
+        state.getAllPostsStatus = "pending";
+      })
       .addCase(getPosts.fulfilled, (state, action) => {
         state.getAllPostsStatus = "fulfilled";
         state.allPosts = action.payload;
       })
       .addCase(getPosts.rejected, (state) => {
         state.getAllPostsStatus = "rejected";
+      })
+      .addCase(fetchUserPosts.pending, (state, action) => {
+        state.getUserPostsStatus = "pending";
       })
       .addCase(fetchUserPosts.fulfilled, (state, action) => {
         state.getUserPostsStatus = "fulfilled";

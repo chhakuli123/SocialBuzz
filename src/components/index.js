@@ -19,3 +19,6 @@ export { ProfileModal } from "./ProfileModal/ProfileModal";
 export { UserProfile } from "./UserProfile/UserProfile";
 export { Profile } from "./Profile/Profile";
 export { FollowButton } from "./FollowButton/FollowButton";
+export { ShimmerPostList } from "./shimmer-effect/ShimmerPostList";
+export { ShimmerUserProfile } from "./shimmer-effect/ShimmerUserProfile ";
+export { ShimmerUserCard } from "./shimmer-effect/ShimmerUserCard ";

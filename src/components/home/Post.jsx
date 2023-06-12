@@ -17,6 +17,7 @@ import {
 import { useOutsideClick } from "hooks";
 import { EditPostModal } from "./EditPostModel";
 import { Comment } from "./Comment";
+import { useNavigate } from "react-router";
 
 const Post = ({ post, allUsers }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -24,9 +25,10 @@ const Post = ({ post, allUsers }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
-  const {bookmarks} = useSelector((state) => state.post);
+  const { bookmarks } = useSelector((state) => state.post);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  
   const domNode = useOutsideClick(() => {
     setShowOptions(false);
   });
@@ -44,12 +46,23 @@ const Post = ({ post, allUsers }) => {
   );
   const isBookmarked = bookmarks?.some((post) => post._id === _id);
 
+  const handleNavigate = (username) => {
+    if (isOwnedByUser) {
+      navigate("/user-profile");
+    } else {
+      navigate(`/profile/${username}`);
+    }
+  };
+  
   return (
     <div
       className="text-deepBlue border border-gray-300 bg-white px-6 py-4 rounded-lg shadow-lg w-full mt-3 flex h-fit flex-col "
       key={post?._id}
     >
-      <div className="flex items-center flex-wrap mb-2">
+      <div
+        className="flex items-center flex-wrap mb-2 cursor-pointer"
+        onClick={() => handleNavigate(isOwnedByUser ? user.username : postUser?.username)}
+        >
         {/* User avatar */}
         {isOwnedByUser && user.avatarUrl ? (
           <img

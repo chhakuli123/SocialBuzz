@@ -68,6 +68,9 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchAllUsers.pending, (state, action) => {
+        state.allUserStatus = "pending";
+      })
       .addCase(fetchAllUsers.fulfilled, (state, action) => {
         state.allUserStatus = "fulfilled";
         state.allUsers = action.payload;
@@ -75,6 +78,9 @@ const userSlice = createSlice({
       .addCase(fetchAllUsers.rejected, (state, action) => {
         state.allUserStatus = "rejected";
         state.allUsersError = action.payload;
+      })
+      .addCase(fetchUserDetails.pending, (state) => {
+        state.userDetailsStatus = "pending";
       })
       .addCase(fetchUserDetails.fulfilled, (state, action) => {
         state.userDetailsStatus = "fulfilled";
