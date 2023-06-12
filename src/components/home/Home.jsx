@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "slices";
 import { PostList } from "./PostList";
 import { PostForm } from "./PostForm";
+import { ShimmerPostList } from "components";
+
 
 const Home = () => {
-  const { allPosts } = useSelector((state) => state.post);
+  const { allPosts, getAllPostsStatus } = useSelector((state) => state.post);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -26,10 +28,12 @@ const Home = () => {
   return (
     <div className="lg:w-1/2 w-full px-4 py-2 relative">
       <PostForm />
-      {homePosts?.length ? (
+      {getAllPostsStatus === "pending" ? (
+        <ShimmerPostList />
+      ) : homePosts?.length ? (
         <PostList posts={homePosts} />
       ) : (
-        <p className="text-secondary-300 text-2xl text-center font-semibold">
+        <p className="text-deepBlue text-2xl text-center font-semibold">
           Follow users to see their posts here!
         </p>
       )}

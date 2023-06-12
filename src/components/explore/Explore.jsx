@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getPosts } from "slices";
-import { PostList } from "components";
+import { PostList, ShimmerPostList } from "components";
 
 const Explore = () => {
-  const { allPosts } = useSelector((state) => state.post);
+  const { allPosts,getAllPostsStatus } = useSelector((state) => state.post);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -25,7 +25,9 @@ const Explore = () => {
   return (
     <div className="lg:w-1/2 w-full px-4 relative">
       <p className="font-semibold text-2xl text-deepBlue mb-2">Explore</p>
-      {explorePosts?.length ? (
+      {getAllPostsStatus === "pending" ?(
+        <ShimmerPostList />
+      ) :explorePosts?.length ? (
         <PostList posts={explorePosts} />
       ) : (
         <p className="text-deepBlue text-2xl text-center font-semibold">
