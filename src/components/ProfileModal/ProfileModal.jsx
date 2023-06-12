@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { AddPhotoAlternateOutlinedIcon, ClearIcon } from "asset";
 import { editUserDetails } from "slices";
+import { toast } from "react-hot-toast";
 
 const ProfileModal = ({ setProfileModal, user }) => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const ProfileModal = ({ setProfileModal, user }) => {
       avatarUrl: formData.selectedImage || user?.avatarUrl,
     };
     dispatch(editUserDetails(updatedUserData));
+    toast.success("Details Edited Successfully");
     setProfileModal(false);
   };
 

@@ -6,6 +6,8 @@ export {
   getBookmarks,
   bookmarkPost,
   unBookmarkPost,
+  followUser,
+  unFollowUser,
 } from "./userServices";
 export {
   getAllPostsFromServer,

@@ -134,10 +134,9 @@ export const bookmarkPostHandler = function (schema, request) {
       );
     }
     user.bookmarks.push(post);
-    this.db.users.update(
-      { _id: user._id },
-      { ...user, updatedAt: formatDate() }
-    );
+
+    this.db.users.update({ id: user.id }, { ...user, updatedAt: formatDate() });
+
     return new Response(200, {}, { bookmarks: user.bookmarks });
   } catch (error) {
     return new Response(
@@ -180,10 +179,9 @@ export const removePostFromBookmarkHandler = function (schema, request) {
       (currPost) => currPost._id !== postId
     );
     user = { ...user, bookmarks: filteredBookmarks };
-    this.db.users.update(
-      { _id: user._id },
-      { ...user, updatedAt: formatDate() }
-    );
+
+    this.db.users.update({ id: user.id }, { ...user, updatedAt: formatDate() });
+
     return new Response(200, {}, { bookmarks: user.bookmarks });
   } catch (error) {
     return new Response(
@@ -244,14 +242,16 @@ export const followUserHandler = function (schema, request) {
       ...followUser,
       followers: [...followUser.followers, { ...user }],
     };
+
     this.db.users.update(
-      { _id: user._id },
+      { id: user.id },
       { ...updatedUser, updatedAt: formatDate() }
     );
     this.db.users.update(
-      { _id: followUser._id },
+      { id: followUser.id },
       { ...updatedFollowUser, updatedAt: formatDate() }
     );
+
     return new Response(
       200,
       {},
@@ -309,14 +309,16 @@ export const unfollowUserHandler = function (schema, request) {
         (currUser) => currUser._id !== user._id
       ),
     };
+
     this.db.users.update(
-      { _id: user._id },
+      { id: user.id },
       { ...updatedUser, updatedAt: formatDate() }
     );
     this.db.users.update(
-      { _id: followUser._id },
+      { id: followUser.id },
       { ...updatedFollowUser, updatedAt: formatDate() }
     );
+
     return new Response(
       200,
       {},

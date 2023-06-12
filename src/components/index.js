@@ -18,3 +18,4 @@ export { UserDetails } from "./UserDetails/UserDetails";
 export { ProfileModal } from "./ProfileModal/ProfileModal";
 export { UserProfile } from "./UserProfile/UserProfile";
 export { Profile } from "./Profile/Profile";
+export { FollowButton } from "./FollowButton/FollowButton";

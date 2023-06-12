@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { SearchOutlinedIcon } from "asset";
 import { fetchAllUsers } from "slices";
+import { useNavigate } from "react-router";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const { allUsers } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
+const navigate=useNavigate()
 
   useEffect(() => {
     dispatch(fetchAllUsers());
@@ -30,7 +34,12 @@ const SearchBar = () => {
     setSearchTerm("");
     setFilteredUsers([]);
   };
-
+  
+  const handleNavigate = (username) => {
+    user.username === username
+      ? navigate("/user-profile")
+      : navigate(`/profile/${username}`);
+  };
   return (
     <div className="ml-4 mr-10 mt-3">
     <div className="relative">
@@ -50,17 +59,18 @@ const SearchBar = () => {
         <div className="absolute top-full left-0 cursor-pointer right-0 bg-white rounded-b-md shadow-md ">
           {filteredUsers.map((user) => (
             <div
-              key={user._id}
+              key={user?._id}
               className="p-2 flex items-center border-b border-gray-200"
+              onClick={() => handleNavigate(user?.username)}
             >
               <img
-                src={user.avatarUrl}
-                alt={user.firstName}
+                src={user?.avatarUrl}
+                alt={user?.firstName}
                 className="w-8 h-8 rounded-full"
               />
               <div className="ml-2">
-                <p className="font-medium">{user.firstName} {user.lastName}</p>
-                <p className="text-xs text-gray-400">@{user.username}</p>
+                <p className="font-medium">{user?.firstName} {user?.lastName}</p>
+                <p className="text-xs text-gray-400">@{user?.username}</p>
               </div>
             </div>
           ))}

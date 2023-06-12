@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getAllPostsFromServer = () => axios.get("/api/posts");
 
-export const getPostsByUserName = (username) =>
+const getPostsByUserName = (username) =>
   axios.get(`/api/posts/user/${username}`);
 
 const addPost = (postData) => {
@@ -55,6 +55,7 @@ const dislikePost = (postId) =>
 
 export {
   getAllPostsFromServer,
+  getPostsByUserName,
   addPost,
   deletePost,
   editPost,
