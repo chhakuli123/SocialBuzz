@@ -5,7 +5,12 @@ export {
   logout,
   editUserDetails,
 } from "./authSlice";
-export { userReducer, fetchAllUsers, fetchUserDetails } from "./userSlice";
+export {
+  userReducer,
+  fetchAllUsers,
+  fetchUserDetails,
+  followUnfollowUser,
+} from "./userSlice";
 export {
   postReducer,
   getPosts,
