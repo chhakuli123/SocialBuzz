@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { fetchAllUsers } from "slices";
+import { fetchAllUsers, followUnfollowUser } from "slices";
 import { SearchBar } from "./SearchBar";
 
 const FollowUserBar = () => {
   const { user } = useSelector((state) => state.auth);
   const { allUsers } = useSelector((state) => state.user);
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const FollowUserBar = () => {
             followData.map((user) => (
               <div
                 className="flex items-center justify-between"
-                key={user?._id}
+                key={user?.username}
               >
                 <div className="flex items-center gap-2">
                   <img
@@ -63,7 +63,18 @@ const FollowUserBar = () => {
                     <p className="text-sm text-gray-400">@{user?.username}</p>
                   </div>
                 </div>
-                <button className="flex items-center font-semibold text-white bg-deepBlue rounded-2xl px-2 py-1 ">
+                <button
+                  className="flex items-center font-semibold text-white bg-deepBlue rounded-2xl px-2 py-1"
+                  onClick={() =>
+                    dispatch(
+                      followUnfollowUser({
+                        userId: user?._id,
+                        isFollowing: false,
+                        dispatch,
+                      })
+                    )
+                  }
+                >
                   <span className="mr-1">+</span>
                   <p>Follow</p>
                 </button>

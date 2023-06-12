@@ -1,13 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { getAllUsers, getUserByUsername } from "services";
+import {
+  followUser,
+  getAllUsers,
+  getUserByUsername,
+  unFollowUser,
+} from "services";
+import { editUserDetails } from "./authSlice";
+import { toast } from "react-hot-toast";
 
 const initialState = {
   allUsers: [],
   allUserStatus: "idle",
   allUsersError: null,
   userDetails: {},
+  userDetailsStatus: "idle",
   userDetailsError: null,
+  followUserStatus: "idle",
+  followUserError: null,
 };
 
 export const fetchAllUsers = createAsyncThunk(
@@ -35,6 +45,23 @@ export const fetchUserDetails = createAsyncThunk(
   }
 );
 
+export const followUnfollowUser = createAsyncThunk(
+  "post/followUnfollowUser",
+  async ({ userId, isFollowing, dispatch }, { rejectWithValue }) => {
+    try {
+      const { data } = isFollowing
+        ? await unFollowUser(userId)
+        : await followUser(userId);
+      dispatch(editUserDetails(data.user));
+      const toastMessage = isFollowing ? "Unfollowed!" : "Followed!";
+      toast.success(toastMessage);
+      return data;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -56,6 +83,21 @@ const userSlice = createSlice({
       .addCase(fetchUserDetails.rejected, (state, action) => {
         state.userDetailsStatus = "rejected";
         state.userDetailsError = action.payload;
+      })
+      .addCase(followUnfollowUser.fulfilled, (state, action) => {
+        const { user, followUser } = action.payload;
+        state.followUserStatus = "fulfilled";
+        state.allUsers = state.allUsers.map((currentUser) =>
+          currentUser.username === user.username
+            ? { ...user }
+            : currentUser.username === followUser.username
+            ? { ...followUser }
+            : currentUser
+        );
+      })
+      .addCase(followUnfollowUser.rejected, (state, action) => {
+        state.followUserStatus = "rejected";
+        state.followUserError = action.payload;
       });
   },
 });

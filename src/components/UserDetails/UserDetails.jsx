@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { ProfileModal } from "components";
+import { FollowButton, ProfileModal } from "components";
 
 const UserDetails = ({ user, showEditButton, postLength }) => {
   const [profileModal, setProfileModal] = useState(false);
@@ -33,7 +33,7 @@ const UserDetails = ({ user, showEditButton, postLength }) => {
                 Edit
               </div>
             ) : (
-              <button>follow</button>
+              <FollowButton userDetails={user} />
             )}
           </div>
 
@@ -41,8 +41,8 @@ const UserDetails = ({ user, showEditButton, postLength }) => {
 
           <div className="font-semibold text-deepBlue mt-2 gap-8 flex ">
             <span>{postLength ?? 0} Posts</span>
-            <span>{user.followers?.length ?? 0} Followers</span>
-            <span>{user.following?.length ?? 0} Following</span>
+            <span>{user?.followers?.length ?? 0} Followers</span>
+            <span>{user?.following?.length ?? 0} Following</span>
           </div>
 
           <div className="font-semibold">
