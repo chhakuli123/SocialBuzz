@@ -9,11 +9,19 @@ const UserDetails = ({ user, showEditButton, postLength }) => {
   return (
     <>
       <div className=" bg-white px-6 py-4 gap-4 border rounded-lg shadow-lg flex h-fit sm:gap-6 mb-2">
-        <img
-          className="sm:h-16 h-12 w-12 rounded-full cursor-pointer sm:w-16 bg-secondary-100"
-          src={user?.avatarUrl}
-          alt="avtar"
-        />
+        {user.avatarUrl ? (
+          <img
+            src={user?.avatarUrl}
+            alt="User Avatar"
+            className="sm:h-16 h-12 w-12 rounded-full cursor-pointer sm:w-16 bg-secondary-100"
+          />
+        ) : (
+          <img
+            src="https://res.cloudinary.com/dptfwcnro/image/upload/v1686139004/SocialBuzz/images_zig8rk.png"
+            alt="avatar"
+            className="sm:h-12 h-10 w-12 rounded-full cursor-pointer sm:w-16 bg-secondary-100"
+          />
+        )}
 
         <div className="flex flex-col w-full gap-2">
           <div className="flex justify-between">
