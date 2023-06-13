@@ -99,7 +99,7 @@ const Post = ({ post, allUsers }) => {
           )}
           <p className="text-md text-gray-500">
             {isOwnedByUser ? user.username : post.username} -{" "}
-            {new Date(post.createdAt).toLocaleDateString("en-US")}
+            {new Date(post.createdAt).toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })}
           </p>
         </div>
 
