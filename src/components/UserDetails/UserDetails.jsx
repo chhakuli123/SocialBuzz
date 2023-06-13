@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { FollowButton, ProfileModal } from "components";
+import { EditIcon } from "asset";
 
 const UserDetails = ({ user, showEditButton, postLength }) => {
   const [profileModal, setProfileModal] = useState(false);
@@ -35,10 +36,10 @@ const UserDetails = ({ user, showEditButton, postLength }) => {
             </div>
             {showEditButton ? (
               <div
-                className="font-semibold cursor-pointer text-deepBlue border-deepBlue border-2 rounded-md px-2 py-1  h-8 hover:bg-secondary-200 justify-center flex items-center"
+                className="font-semibold cursor-pointer text-deepBlue border-deepBlue border-2 rounded-md px-2 py-1 h-8 justify-center flex items-center"
                 onClick={() => setProfileModal(true)}
               >
-                Edit
+                <EditIcon style={{fontSize:"1rem",marginRight:"3px"}}/> Edit
               </div>
             ) : (
               <FollowButton userDetails={user} />
