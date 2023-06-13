@@ -41,7 +41,7 @@ const SearchBar = () => {
       : navigate(`/profile/${username}`);
   };
   return (
-    <div className="ml-4 mr-10 mt-3">
+    <div className="ml-4 mr-5 sm:mr-10 mt-3 sm:mt-0 relative z-10">
       <div className="relative">
         <div className="p-4 flex items-center bg-white rounded-t-md shadow-md">
           <input
@@ -60,8 +60,10 @@ const SearchBar = () => {
             {filteredUsers.map((user) => (
               <div
                 key={user?._id}
-                className="p-2 flex items-center border-b border-gray-200"
-                onClick={() => handleNavigate(user?.username)}
+                className="p-2 flex items-center border-b bg-white border-gray-200"
+                onClick={() => {
+                  handleNavigate(user?.username);
+                }}
               >
                 {user.avatarUrl ? (
                   <img

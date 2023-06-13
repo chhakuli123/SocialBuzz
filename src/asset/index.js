@@ -30,4 +30,6 @@ export {
   EditIcon,
   MoreHorizIcon,
   PersonOutlineIcon,
+  TuneIcon,
+  ElderlyOutlinedIcon,
 } from "./icons/metarialIcons";

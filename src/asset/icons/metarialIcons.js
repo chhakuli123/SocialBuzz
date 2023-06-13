@@ -29,6 +29,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import TuneIcon from "@mui/icons-material/Tune";
+import ElderlyOutlinedIcon from "@mui/icons-material/ElderlyOutlined";
 export {
   DarkModeOutlinedIcon,
   LightModeOutlinedIcon,
@@ -61,4 +63,6 @@ export {
   EditIcon,
   MoreHorizIcon,
   PersonOutlineIcon,
+  TuneIcon,
+  ElderlyOutlinedIcon,
 };

@@ -121,7 +121,7 @@ export function makeServer({ environment = "development" } = {}) {
 
       this.passthrough();
       this.passthrough(
-        "https://api.cloudinary.com/v1_1/dflebgpde/image/upload",
+        "https://api.cloudinary.com/v1_1/dptfwcnro/image/upload",
         ["post"]
       );
     },
