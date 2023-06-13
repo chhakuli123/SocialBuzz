@@ -30,7 +30,7 @@ export const posts = [
       },
     ],
     username: "chhakulizingare",
-    createdAt: formatDate(),
+    createdAt: new Date("11/02/2022"),
     updatedAt: formatDate(),
   },
   {
@@ -58,7 +58,7 @@ export const posts = [
       },
     ],
     username: "alicejohnson",
-    createdAt: formatDate(),
+    createdAt: new Date("07/04/2021"),
     updatedAt: formatDate(),
   },
 
@@ -110,7 +110,7 @@ export const posts = [
       },
     ],
     username: "chhakulizingare",
-    createdAt: formatDate(),
+    createdAt: new Date("12/05/2021"),
     updatedAt: formatDate(),
   },
   {
@@ -150,7 +150,7 @@ export const posts = [
       },
     ],
     username: "chhakulizingare",
-    createdAt: formatDate(),
+    createdAt: new Date("08/03/2022"),
     updatedAt: formatDate(),
   },
   {
@@ -179,7 +179,7 @@ export const posts = [
       },
     ],
     username: "bobsmith",
-    createdAt: formatDate(),
+    createdAt: new Date("06/05/2021"),
     updatedAt: formatDate(),
   },
   {
@@ -219,7 +219,7 @@ export const posts = [
       },
     ],
     username: "chhakulizingare",
-    createdAt: formatDate(),
+    createdAt: new Date("09/07/2021"),
     updatedAt: formatDate(),
   },
   {
@@ -248,7 +248,7 @@ export const posts = [
       },
     ],
     username: "emmadavis",
-    createdAt: formatDate(),
+    createdAt: new Date("07/06/2022"),
     updatedAt: formatDate(),
   },
   {
@@ -286,7 +286,7 @@ export const posts = [
       },
     ],
     username: "chhakulizingare",
-    createdAt: formatDate(),
+    createdAt: new Date("10/02/2021"),
     updatedAt: formatDate(),
   },
   {
@@ -314,7 +314,7 @@ export const posts = [
       },
     ],
     username: "jameswilson",
-    createdAt: formatDate(),
+    createdAt: new Date("03/15/2021"),
     updatedAt: formatDate(),
   },
 
@@ -344,7 +344,7 @@ export const posts = [
       },
     ],
     username: "lilyanderson",
-    createdAt: formatDate(),
+    createdAt: new Date("07/25/2022"),
     updatedAt: formatDate(),
   },
   {
@@ -374,7 +374,7 @@ export const posts = [
       },
     ],
     username: "olivertaylor",
-    createdAt: formatDate(),
+    createdAt: new Date("07/06/2022"),
     updatedAt: formatDate(),
   },
 
@@ -404,7 +404,7 @@ export const posts = [
       },
     ],
     username: "sophieclark",
-    createdAt: formatDate(),
+    createdAt: new Date("2/22/2022"),
     updatedAt: formatDate(),
   },
   {
@@ -444,7 +444,7 @@ export const posts = [
       },
     ],
     username: "alicejohnson",
-    createdAt: formatDate(),
+    createdAt: new Date("07/03/2022"),
     updatedAt: formatDate(),
   },
   {
@@ -484,7 +484,7 @@ export const posts = [
       },
     ],
     username: "sophieclark",
-    createdAt: formatDate(),
+    createdAt: new Date("09/02/2021"),
     updatedAt: formatDate(),
   },
   {
@@ -499,7 +499,7 @@ export const posts = [
     },
     comments: [],
     username: "lilyanderson",
-    createdAt: formatDate(),
+    createdAt: new Date("07/28/2021"),
     updatedAt: formatDate(),
   },
   {
@@ -541,7 +541,7 @@ export const posts = [
       },
     ],
     username: "olivertaylor",
-    createdAt: formatDate(),
+    createdAt: new Date("07/05/2021"),
     updatedAt: formatDate(),
   },
   {
@@ -583,7 +583,7 @@ export const posts = [
       },
     ],
     username: "emmadavis",
-    createdAt: formatDate(),
+    createdAt: new Date("07/02/2023"),
     updatedAt: formatDate(),
   },
   {
@@ -598,7 +598,7 @@ export const posts = [
     },
     comments: [],
     username: "lilyanderson",
-    createdAt: formatDate(),
+    createdAt: new Date("06/15/2023"),
     updatedAt: formatDate(),
   },
 ];
