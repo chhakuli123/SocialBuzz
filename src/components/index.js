@@ -1,6 +1,5 @@
 export { Navbar } from "./shared/Navbar";
 export { Sidebar } from "./shared/Sidebar";
-export { FilterButtons } from "./shared/FilterButtons";
 export { SearchBar } from "./suggetion&search/SearchBar";
 export { FollowUserBar } from "./suggetion&search/FollowUserBar";
 export { MockAPI } from "./shared/Mockman";
