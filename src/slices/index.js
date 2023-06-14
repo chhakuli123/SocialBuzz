@@ -25,3 +25,4 @@ export {
   bookmarkUnbookmarkUserPost,
   fetchUserPosts,
 } from "./postsSlice";
+export { themeReducer, toggleTheme } from "./themeSlice";
