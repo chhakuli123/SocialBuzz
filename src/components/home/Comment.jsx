@@ -61,7 +61,7 @@ const Comment = ({ post, allUsers }) => {
           <input
             type="text"
             placeholder="Add a comment..."
-            className="w-full border border-gray-400 ml-2 rounded-lg p-2 pr-10"
+            className="input w-full border border-gray-400 ml-2 rounded-lg p-2 pr-10"
             value={editingComment ? editingComment.text : commentText}
             onChange={(e) =>
               editingComment

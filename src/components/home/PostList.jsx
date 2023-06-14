@@ -41,7 +41,7 @@ const PostList = ({ posts }) => {
               }`}
             >
               <li
-                className={`hover:bg-activeGreen rounded-lg  px-6 flex justify-center items-center ${
+                className={`options hover:bg-activeGreen rounded-lg  px-6 flex justify-center items-center ${
                   sortByOption === "Latest" ? "bg-activeGreen" : ""
                 }`}
                 onClick={() => setSortByOption("Latest")}
@@ -52,7 +52,7 @@ const PostList = ({ posts }) => {
                 Latest
               </li>
               <li
-                className={`hover:bg-activeGreen rounded-lg flex justify-center items-center ${
+                className={`options hover:bg-activeGreen rounded-lg flex justify-center items-center ${
                   sortByOption === "Oldest" ? "bg-activeGreen" : ""
                 }`}
                 onClick={() => setSortByOption("Oldest")}
@@ -63,7 +63,7 @@ const PostList = ({ posts }) => {
                 Oldest
               </li>
               <li
-                className={`hover:bg-activeGreen rounded-lg px-6 flex justify-center items-center ${
+                className={`options hover:bg-activeGreen rounded-lg px-6 flex justify-center items-center ${
                   sortByOption === "Trending" ? "bg-activeGreen" : ""
                 }`}
                 onClick={() => setSortByOption("Trending")}

@@ -31,7 +31,7 @@ const Sidebar = () => {
   const domNode = useOutsideClick(() => setShowOptions(false));
 
   const isActiveClass = ({ isActive }) =>
-    `flex items-center text-lg mt-1 py-1.5 rounded-3xl px-4 hover:bg-activeGreen w-full cursor-pointer ${
+    `sidebar flex items-center text-lg mt-1 py-1.5 rounded-3xl px-4 hover:bg-activeGreen w-full cursor-pointer ${
       isActive && "bg-activeGreen font-semibold text-deepBlue"
     }`;
 
@@ -83,7 +83,7 @@ const Sidebar = () => {
             <li className="menu-item mt-8">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="bg-deepBlue w-full flex justify-center text-xl items-center py-2 px-5 text-white rounded-full"
+                className="btn bg-deepBlue w-full flex justify-center text-lg items-center py-2 px-5 text-white rounded-full"
               >
                 <AddCircleOutlineOutlinedIcon
                   style={{ fontSize: 30 }}
@@ -122,7 +122,7 @@ const Sidebar = () => {
                       <p className="text-lg font-medium">
                         {user?.firstName} {user?.lastName}
                       </p>
-                      <p className="text-sm text-gray-500">@{user?.username}</p>
+                      <p className="text-sm text-gray-400">@{user?.username}</p>
                     </div>
                   </div>
 
@@ -131,18 +131,18 @@ const Sidebar = () => {
                   </span>
                 </div>
                 {showOptions && (
-                  <div className="absolute bottom-20 right-0 font-bold bg-white shadow-xl border">
+                  <div className="absolute bottom-20 font-bold bg-white shadow-xl border">
                     <div className="relative">
                       <ul className="py-2">
                         <li
-                          className="px-4 py-2 cursor-pointer hover:bg-activeGreen"
+                          className="options px-4 py-2 cursor-pointer hover:bg-activeGreen"
                           onClick={() => navigate("/user-profile")}
                         >
                           <PersonOutlineIcon className="mr-2" />
                           Go to Profile
                         </li>
                         <li
-                          className="px-4 py-2 cursor-pointer hover:bg-activeGreen"
+                          className="options px-4 py-2 cursor-pointer hover:bg-activeGreen"
                           onClick={() => {
                             dispatch(logout());
                             toast.success("Logged Out!");
@@ -163,42 +163,36 @@ const Sidebar = () => {
       </aside>
       {/* -------------------- MenuBar For Mobile -------------------------- */}
 
-      <div className="menu md:hidden fixed bottom-0 z-30 inset-x-0 bg-deepBlue text-customOrange flex justify-between px-4 py-3">
+      <div className="menu md:hidden fixed bottom-0 z-30 inset-x-0  border-t-2 bg-white text-customOrange flex justify-between px-4 py-3">
         <span
           onClick={() => navigate("/")}
           className="flex flex-col items-center"
         >
-          <HomeOutlinedIcon style={{ fontSize: 35 }} className="text-white" />
+          <HomeOutlinedIcon style={{ fontSize: 35 }} />
         </span>
         <span
           onClick={() => navigate("/explore")}
           className="flex flex-col items-center"
         >
-          <RocketOutlinedIcon style={{ fontSize: 35 }} className="text-white" />
+          <RocketOutlinedIcon style={{ fontSize: 35 }} />
         </span>
         <span
           onClick={() => navigate("/bookmarks")}
           className="flex flex-col items-center"
         >
-          <BookmarkBorderOutlinedIcon
-            style={{ fontSize: 35 }}
-            className="text-white"
-          />
+          <BookmarkBorderOutlinedIcon style={{ fontSize: 35 }} />
         </span>
         <span
           onClick={() => navigate("/liked-posts")}
           className="flex flex-col items-center"
         >
-          <FavoriteBorderOutlinedIcon
-            style={{ fontSize: 35 }}
-            className="text-white"
-          />
+          <FavoriteBorderOutlinedIcon style={{ fontSize: 35 }} />
         </span>
         <span
           onClick={() => navigate("/user-profile")}
           className="flex flex-col items-center"
         >
-          <PersonOutlineIcon style={{ fontSize: 35 }} className="text-white" />
+          <PersonOutlineIcon style={{ fontSize: 35 }} />
         </span>
         <span
           onClick={() => {
@@ -207,18 +201,18 @@ const Sidebar = () => {
           }}
           className="flex flex-col items-center"
         >
-          <LogoutIcon style={{ fontSize: 35 }} className="text-white" />
+          <LogoutIcon style={{ fontSize: 35 }} />
         </span>
       </div>
 
       {/* Position the HistoryEduIcon above the right corner */}
       <div className="md:hidden fixed bottom-16 z-30 right-0 mb-4 mr-2">
-        <div className="bg-customGreen rounded-full w-12 h-12 flex items-center justify-center">
+        <div className="bg-deepBlue btn rounded-full w-14 h-14 flex items-center justify-center">
           <span
             onClick={() => setIsModalOpen(true)}
             className="text-white text-3xl"
           >
-            <HistoryEduIcon style={{ fontSize: 35 }} className="text-white" />
+            <HistoryEduIcon style={{ fontSize: 35 }} />
           </span>
         </div>
       </div>

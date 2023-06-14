@@ -27,7 +27,7 @@ const UserDetails = ({ user, showEditButton, postLength }) => {
         <div className="flex flex-col w-full gap-2">
           <div className="flex justify-between">
             <div>
-              <p className="md:text-2xl text-lg font-semibold cursor-pointer text-secondary-300">
+              <p className="md:text-2xl text-lg font-semibold cursor-pointer">
                 {user?.firstName} {user?.lastName}
               </p>
               <p className="text-sm text-gray-400 cursor-pointer">
@@ -36,7 +36,7 @@ const UserDetails = ({ user, showEditButton, postLength }) => {
             </div>
             {showEditButton ? (
               <div
-                className="font-semibold cursor-pointer text-deepBlue border-deepBlue border-2 rounded-md px-2 py-1 h-8 justify-center flex items-center"
+                className="font-semibold cursor-pointer text-deepBlue border border-deepBlue rounded-md px-2 py-1 h-8 justify-center flex items-center"
                 onClick={() => setProfileModal(true)}
               >
                 <EditIcon style={{fontSize:"1rem",marginRight:"3px"}}/> Edit
@@ -46,7 +46,7 @@ const UserDetails = ({ user, showEditButton, postLength }) => {
             )}
           </div>
 
-          <p className="text-gray-500 font-semibold break-all">{user?.bio}</p>
+          <p className="text-gray-400 text-lg font-semibold break-all">{user?.bio}</p>
 
           <div className="font-semibold text-deepBlue mt-2 gap-8 flex ">
             <span>{postLength ?? 0} Posts</span>

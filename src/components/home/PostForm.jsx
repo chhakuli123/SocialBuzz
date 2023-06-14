@@ -50,6 +50,8 @@ const PostForm = () => {
     setSelectedImageName(null);
   };
 
+  const isPostDisabled = postContent.trim() === "";
+
   return (
     <div className="bg-white px-6 py-4 mb-2 w-full border rounded-lg shadow-lg  flex h-fit flex-col ">
       <div className="flex">
@@ -67,7 +69,7 @@ const PostForm = () => {
           />
         )}
         <textarea
-          className="w-full h-32 ml-4 border-none rounded-lg resize-none focus:outline-none"
+          className="textarea w-full h-32 ml-4 border-none rounded-lg resize-none focus:outline-none"
           placeholder="What's on your mind?"
           value={postContent}
           onChange={(e) => setPostContent(e.target.value)}
@@ -82,7 +84,7 @@ const PostForm = () => {
             className="object-cover rounded-md h-[7rem]"
           />
           <button
-            className="absolute top-1 right-1 rounded-full bg-activeGreen w-5 h-5 p-2 flex items-center justify-center"
+            className="btn absolute top-1 right-1 rounded-full bg-activeGreen w-5 h-5 p-2 flex items-center justify-center"
             onClick={() => {
               setSelectedImageName(null);
             }}
@@ -114,7 +116,10 @@ const PostForm = () => {
 
         <button
           onClick={handlePostClick}
-          className="bg-deepBlue text-white font-semibold py-1 px-8 text-xl rounded"
+          className={`btn bg-deepBlue text-white font-semibold py-1 px-8 text-xl rounded-full ${
+            isPostDisabled ? "opacity-70 cursor-not-allowed" : ""
+          }`}
+          disabled={isPostDisabled}
         >
           Post
         </button>

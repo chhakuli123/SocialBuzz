@@ -55,8 +55,8 @@ const CommentItem = ({
       )}
 
       {/* Comment content */}
-      <div className="bg-gray-200 px-4 py-1 w-full rounded-md sm:rounded-tl-none sm:rounded-[1rem]">
-        <div className="font-semibold flex justify-between">
+      <div className="bg-gray-200 px-4 py-1 w-full rounded-md sm:rounded-tl-none sm:rounded-[1rem] input">
+        <div className="text-lg font-semibold flex justify-between">
           {isCurrentUserComment ? (
             <span>{user?.firstName} {user?.lastName}</span>
           ) : commentUser ? (
@@ -67,19 +67,19 @@ const CommentItem = ({
           {isCurrentUserComment && (
             <div className="relative" ref={domNode}>
               <MoreVertIcon
-                className="text-gray-500 cursor-pointer"
+                className="cursor-pointer"
                 onClick={toggleOptions}
               />
               {commentOptions && (
-                <div className="absolute right-0 top-6.5 bg-activeGreen border shadow rounded py-2 px-2">
+                <div className="absolute right-0 top-6.5 rounded-lg bg-white border shadow py-1 px-2">
                   <div
-                    className="cursor-pointer py-2 px-4"
+                    className="options cursor-pointer py-1 px-4 rounded-lg hover:bg-activeGreen"
                     onClick={() => handleEditComment(comment)}
                   >
                     Edit
                   </div>
                   <div
-                    className="cursor-pointer py-2 px-4"
+                    className="options cursor-pointer py-1 px-4 rounded-lg hover:bg-activeGreen"
                     onClick={() => handleDeleteComment(comment._id)}
                   >
                     Delete

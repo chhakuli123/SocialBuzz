@@ -71,7 +71,7 @@ const EditPostModal = ({ post, onClose }) => {
           </button>
         </div>
         <textarea
-          className="w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none"
+          className="textarea w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none"
           rows={5}
           value={updatedPostContent}
           onChange={handleContentChange}
@@ -84,7 +84,7 @@ const EditPostModal = ({ post, onClose }) => {
               className="object-cover rounded-md h-[7rem]"
             />
             <button
-              className="absolute top-1 right-1 rounded-full bg-activeGreen w-5 h-5 p-2 flex items-center justify-center"
+              className="btn absolute top-1 right-1 rounded-full bg-activeGreen w-5 h-5 p-2 flex items-center justify-center"
               onClick={handleDeleteImage}
             >
               <ClearIcon style={{ fontSize: "1rem" }} />
@@ -119,7 +119,7 @@ const EditPostModal = ({ post, onClose }) => {
 
         <div className="flex justify-end">
           <button
-            className="px-4 py-2 bg-deepBlue text-white rounded-md"
+            className="btn px-4 py-2 bg-deepBlue text-white rounded-full"
             onClick={handleEditPost}
           >
             Update

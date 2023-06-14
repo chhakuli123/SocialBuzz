@@ -41,9 +41,9 @@ const SearchBar = () => {
       : navigate(`/profile/${username}`);
   };
   return (
-    <div className="ml-4 mr-5 sm:mr-10 mt-3 sm:mt-0 relative z-10">
+    <div className="ml-4 mr-5 sm:mr-10 mt-2 relative z-10">
       <div className="relative">
-        <div className="p-4 flex items-center bg-white rounded-t-md shadow-md">
+        <div className="p-4 flex items-center bg-white rounded-t-md shadow-md border">
           <input
             className="w-full bg-transparent border-none focus:outline-none"
             type="text"
@@ -88,7 +88,7 @@ const SearchBar = () => {
             ))}
             <div className="p-2 flex justify-end">
               <button
-                className="text-white rounded-md p-1 font-semibold bg-deepBlue"
+                className="btn text-white rounded-md p-1 font-semibold bg-deepBlue"
                 onClick={clearSearch}
               >
                 Clear Search
@@ -105,7 +105,7 @@ const SearchBar = () => {
               </div>
               <div className="p-2 flex justify-center">
                 <button
-                  className="text-white rounded-md p-1 font-semibold bg-deepBlue"
+                  className="btn text-white rounded-md p-1 font-semibold bg-deepBlue"
                   onClick={clearSearch}
                 >
                   Clear Search

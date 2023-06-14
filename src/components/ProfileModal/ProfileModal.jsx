@@ -77,7 +77,7 @@ const ProfileModal = ({ setProfileModal, user }) => {
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Edit Profile</h2>
           <ClearIcon
-            className="text-gray-600 cursor-pointer"
+            className="cursor-pointer"
             onClick={handleClose}
           />
         </div>
@@ -103,13 +103,13 @@ const ProfileModal = ({ setProfileModal, user }) => {
             </div>
             <label
               htmlFor="avatar"
-              className="absolute top-14 right-0 bg-gray-200 text-deepBlue rounded-full p-1 cursor-pointer"
+              className="absolute top-14 right-0 bg-customBg text-deepBlue rounded-full p-1 cursor-pointer"
             >
               <AddPhotoAlternateOutlinedIcon style={{ fontSize: "1.4rem" }} />
               <input
                 type="file"
                 id="avatar"
-                className="hidden"
+                className="input hidden"
                 accept="image/*"
                 onChange={handleImageChange}
               />
@@ -126,7 +126,7 @@ const ProfileModal = ({ setProfileModal, user }) => {
               type="text"
               id="firstName"
               name="firstName"
-              className="border border-gray-300 rounded-lg px-1 py-1 w-full"
+              className="input border border-gray-300 rounded-lg px-1 py-1 w-full"
               value={formData.firstName}
               onChange={handleInputChange}
             />
@@ -139,7 +139,7 @@ const ProfileModal = ({ setProfileModal, user }) => {
               type="text"
               id="lastName"
               name="lastName"
-              className="border border-gray-300 rounded-lg px-1 py-1 w-full"
+              className="input border border-gray-300 rounded-lg px-1 py-1 w-full"
               value={formData.lastName}
               onChange={handleInputChange}
             />
@@ -153,7 +153,7 @@ const ProfileModal = ({ setProfileModal, user }) => {
           <textarea
             id="bio"
             name="bio"
-            className="border border-gray-300 rounded-lg px-1 py-1 w-full h-24"
+            className="textarea border border-gray-300 rounded-lg px-1 py-1 w-full h-24"
             value={formData.bio}
             onChange={handleInputChange}
           />
@@ -167,7 +167,7 @@ const ProfileModal = ({ setProfileModal, user }) => {
             type="text"
             id="website"
             name="website"
-            className="border border-gray-300 rounded-lg px-1 py-1 w-full"
+            className="input border border-gray-300 rounded-lg px-1 py-1 w-full"
             value={formData.website}
             onChange={handleInputChange}
           />
@@ -175,7 +175,7 @@ const ProfileModal = ({ setProfileModal, user }) => {
 
         <div className="flex justify-end">
           <button
-            className="bg-deepBlue text-white rounded-lg px-4 py-2"
+            className="btn bg-deepBlue text-white rounded-full px-4 py-2"
             onClick={handleSave}
           >
             Update

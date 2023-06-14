@@ -52,6 +52,8 @@ const PostModal = ({ onClose }) => {
     setShowEmojiPicker(false);
   };
 
+  const isPostDisabled = newPostContent.trim() === ""; 
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-black text-deepBlue">
       <div className="bg-white rounded-lg p-4 w-full max-w-md m-3 sm:m-0">
@@ -62,7 +64,7 @@ const PostModal = ({ onClose }) => {
           </button>
         </div>
         <textarea
-          className="w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none"
+          className="textarea w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none"
           rows={5}
           value={newPostContent}
           onChange={(e)=>setNewPostContent(e.target.value)}
@@ -75,7 +77,7 @@ const PostModal = ({ onClose }) => {
               className="object-cover rounded-md h-[7rem]"
             />
             <button
-              className="absolute top-1 right-1 rounded-full bg-activeGreen w-5 h-5 p-2 flex items-center justify-center"
+              className="btn absolute top-1 right-1 rounded-full bg-activeGreen w-5 h-5 p-2 flex items-center justify-center"
               onClick={()=>setNewPostImage(null)}
             >
               <ClearIcon style={{ fontSize: "1rem" }} />
@@ -110,8 +112,11 @@ const PostModal = ({ onClose }) => {
 
         <div className="flex justify-end">
           <button
-            className="px-4 py-2 bg-deepBlue text-white rounded-md"
+            className={`btn px-4 py-2 bg-deepBlue text-white rounded-full ${
+              isPostDisabled ? "opacity-70 cursor-not-allowed" : ""
+            }`}
             onClick={handleCreatePost}
+            disabled={isPostDisabled}
           >
             Create
           </button>

@@ -67,7 +67,7 @@ const FollowUserBar = () => {
                   </div>
                 </div>
                 <button
-                  className="flex items-center font-semibold text-white bg-deepBlue rounded-2xl px-2 py-1"
+                  className="btn flex items-center font-semibold text-white bg-deepBlue rounded-2xl px-2 py-1"
                   onClick={() =>
                     dispatch(
                       followUnfollowUser({
