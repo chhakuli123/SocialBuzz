@@ -16,3 +16,35 @@
   background-color: #253053;
   border-radius: 1rem;
 }
+
+/* css for dark theme */
+
+.theme-dark .bg-customBg {
+  background-color: #0f172a;
+}
+
+.theme-dark,
+.theme-dark .logo-name,
+.theme-dark .text-deepBlue {
+  color: #edeeee;
+}
+
+.theme-dark .bg-white,
+.theme-dark .textarea,
+.theme-dark .bg-activeGreen {
+  background-color: #253044;
+}
+
+.theme-dark .border {
+  border-color: #525f79;
+}
+
+.theme-dark .btn {
+  background-color: #1d9bf0;
+}
+
+.theme-dark .input,
+.theme-dark .sidebar:hover,
+.theme-dark .options:hover {
+  background-color: #334e68;
+}
