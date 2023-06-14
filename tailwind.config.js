@@ -5,6 +5,7 @@ module.exports = {
       colors: {
         customBg: "#FAF9F9",
         deepBlue: "#253053",
+        customBlue: "#1d9bf0",
         customGreen: "#079E83",
         activeGreen: "#DFE2EC",
         lightBlue: "#4e5f86",

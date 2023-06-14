@@ -28,7 +28,7 @@ const Post = ({ post, allUsers }) => {
   const { bookmarks } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const domNode = useOutsideClick(() => {
     setShowOptions(false);
   });
@@ -53,7 +53,7 @@ const Post = ({ post, allUsers }) => {
       navigate(`/profile/${username}`);
     }
   };
-  
+
   return (
     <div
       className="text-deepBlue border border-gray-300 bg-white px-6 py-4 rounded-lg shadow-lg w-full mt-3 flex h-fit flex-col "
@@ -61,20 +61,23 @@ const Post = ({ post, allUsers }) => {
     >
       <div
         className="flex items-center flex-wrap mb-2 cursor-pointer"
-        onClick={() => handleNavigate(isOwnedByUser ? user.username : postUser?.username)}
-        >
+        onClick={(e) => {
+          e.stopPropagation();
+          handleNavigate(isOwnedByUser ? user.username : postUser?.username);
+        }}
+      >
         {/* User avatar */}
         {isOwnedByUser && user.avatarUrl ? (
           <img
             src={user?.avatarUrl}
             alt="user avatar"
-            className="w-10 h-10 rounded-full mb-2 md:mb-0 md:mr-2"
+            className="w-10 h-10 rounded-full md:mr-2"
           />
         ) : postUser?.avatarUrl ? (
           <img
             src={postUser?.avatarUrl}
             alt="user avatar"
-            className="w-10 h-10 rounded-full mb-2 md:mb-0 md:mr-2"
+            className="w-10 h-10 rounded-full md:mr-2"
           />
         ) : (
           <img
@@ -85,7 +88,7 @@ const Post = ({ post, allUsers }) => {
         )}
 
         {/* User details */}
-        <div className="flex flex-col">
+        <div className="flex flex-col ml-2">
           {isOwnedByUser ? (
             <p className="font-semibold">
               {user.firstName} {user.lastName}
@@ -97,9 +100,13 @@ const Post = ({ post, allUsers }) => {
               </p>
             )
           )}
-          <p className="text-md text-gray-500">
+          <p className="text-md text-gray-400">
             {isOwnedByUser ? user.username : post.username} -{" "}
-            {new Date(post.createdAt).toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })}
+            {new Date(post.createdAt).toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })}
           </p>
         </div>
 
@@ -107,19 +114,27 @@ const Post = ({ post, allUsers }) => {
         <div className="relative ml-auto" ref={domNode}>
           <MoreVertIcon
             className="more-vert-icon cursor-pointer"
-            onClick={() => setShowOptions(!showOptions)}
-          />
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowOptions(!showOptions);
+            }}          />
           {showOptions && (
-            <div className="absolute right-0 top-6.5 bg-activeGreen border shadow rounded py-2 px-2">
+            <div className="absolute right-0 top-6.5 bg-white font-bold border shadow rounded-lg py-2 px-2">
               <div
-                className="cursor-pointer py-2 px-4"
-                onClick={handleEditIconClick}
+                className="options cursor-pointer py-1 px-4 rounded-lg hover:bg-activeGreen"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleEditIconClick();
+                }}
               >
                 Edit
               </div>
               <div
-                onClick={() => dispatch(deleteUserPost(post && post?._id))}
-                className="cursor-pointer py-2 px-4"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(deleteUserPost(post && post?._id));
+                }}
+                className="options cursor-pointer py-1 px-4 rounded-lg hover:bg-activeGreen"
               >
                 Delete
               </div>

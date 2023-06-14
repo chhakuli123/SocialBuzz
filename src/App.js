@@ -15,10 +15,13 @@ import {
   UserProfile,
 } from "components";
 import { MainContainer } from "main-container";
+import { useSelector } from "react-redux";
 
 function App() {
+  const theme = useSelector((state) => state.theme.theme);
+
   return (
-    <div className="App">
+    <div className={`App theme-${theme}`}>
       <Toaster
         position="top-center"
         toastOptions={{

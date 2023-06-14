@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 
 import { InputField } from "./InputFeild";
@@ -14,6 +14,7 @@ const LoginForm = () => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const theme = useSelector((state) => state.theme.theme);
 
   const loginFormSubmitHandler = async (event) => {
     event.preventDefault();
@@ -51,7 +52,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex justify-around items-center min-h-screen">
+    <div className="flex justify-around items-center min-h-screen bg-customBg ">
       <div className="hidden sm:block">
         <img
           src="https://res.cloudinary.com/dptfwcnro/image/upload/v1685577037/SocialBuzz/undraw_mobile_encryption_re_yw3o_udhh26.svg"
@@ -62,12 +63,20 @@ const LoginForm = () => {
       
       <div className="max-w-md w-full p-6 shadow-xl hover:shadow-2xl border-2 sm:0 m-4">
           <div className="flex justify-center items-center cursor-pointer mb-2">
-            <img
+             {theme === "light" ? (
+               <img
+               className="h-[4rem] w-[4rem] sm:w-[5rem] sm:h-[5rem]"
+               src="https://res.cloudinary.com/dptfwcnro/image/upload/v1685675297/SocialBuzz/SocialBuzzLogo-removebg-preview_qw2mcu.png"
+               alt="SocialBuzz Logo"
+             />
+            ) : (
+              <img
               className="h-[4rem] w-[4rem] sm:w-[5rem] sm:h-[5rem]"
-              src="https://res.cloudinary.com/dptfwcnro/image/upload/v1685675297/SocialBuzz/SocialBuzzLogo-removebg-preview_qw2mcu.png"
-              alt="SocialBuzz Logo"
-            />
-            <h1 className="font-bold ml-2 bg-gradient-to-r text-transparent bg-clip-text from-deepBlue to-customGreen text-2xl sm:text-4xl">
+                src="https://res.cloudinary.com/dptfwcnro/image/upload/v1686667152/SocialBuzz/pokrsqws7iecde7no8kq.png"
+                alt="SocialBuzz Logo"
+              />
+            )}
+            <h1 className="logo-name font-bold ml-2 bg-gradient-to-r text-transparent bg-clip-text from-deepBlue to-customGreen text-2xl sm:text-4xl">
               SocialBuzz
             </h1>
           </div>
